@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="GYARB"
+run/main_scene="uid://cmwpgk36yckt6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Free/Terrain/icon.svg"
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
 
 [rendering]
 
