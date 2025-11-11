@@ -14,7 +14,8 @@ var want_to_jump: bool = false
 var jump_buffer: float = 0.0
 
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_player: AnimatedSprite2D = $Player
+@onready var anim_player_realm: AnimatedSprite2D = $Player_realm
 
 
 ############### GAME LOOP #####################
@@ -26,7 +27,12 @@ func _physics_process(delta: float) -> void:
 			_walk_state(delta)
 		AIR:
 			_air_state(delta)
-			
+	if Input.is_action_just_pressed("switch") and anim_player.visible == true:
+		anim_player.visible = false
+		anim_player_realm.visible = true
+	elif Input.is_action_just_pressed("switch") and anim_player_realm.visible == true:
+		anim_player.visible = true
+		anim_player_realm.visible = false
 
 ###########GENERAL HELP FUNCTIONS###############
 func _movement(delta: float, input_x: float) ->void:
@@ -37,7 +43,7 @@ func _movement(delta: float, input_x: float) ->void:
 			velocity.x = move_toward(velocity.x, 0, ACC * delta)
 			
 		velocity.y += -up_direction.y * GRAVITY * delta
-		apply_floor_snap()	
+		apply_floor_snap()
 		move_and_slide()
 	else:
 		if input_x != 0:
@@ -47,14 +53,17 @@ func _movement(delta: float, input_x: float) ->void:
 		velocity.x += -up_direction.x * GRAVITY * delta
 		apply_floor_snap()
 		move_and_slide()
+		
 	
 
 
 func _update_direction(input_x: float) -> void:
 	if input_x > 0:
-		anim.flip_h = false
+		anim_player.flip_h = false
+		anim_player_realm.flip_h = false
 	elif input_x < 0:
-		anim.flip_h = true
+		anim_player.flip_h = true
+		anim_player_realm.flip_h = true
 
 
 ############## STATE FUNCTION###################
@@ -66,6 +75,11 @@ func _idle_state(delta: float) -> void:
 	_update_direction(input_x)
 	#2
 	_movement(delta, input_x)
+	if velocity.length() > 0 and is_on_floor():
+		_enter_walk_state()
+	elif not is_on_floor():
+		_enter_air_state(false)
+	
 func _walk_state(delta: float) -> void:
 	#1
 	if Input.is_action_just_pressed("jump"):
@@ -74,6 +88,11 @@ func _walk_state(delta: float) -> void:
 	_update_direction(input_x)
 	#2
 	_movement(delta, input_x)
+	
+	if velocity.length() == 0 and is_on_floor():
+		_enter_idle_state()
+	elif not is_on_floor():
+		_enter_air_state(false)
 	
 func _air_state(delta: float) -> void:
 	#1
@@ -100,15 +119,18 @@ func _air_state(delta: float) -> void:
 ############ ENTER STATE FUNCTIONS ###############
 func _enter_idle_state():
 	state = IDLE
-	anim.play("Idle")
+	anim_player.play("Idle")
+	anim_player_realm.play("Idle")
 
 func _enter_walk_state():
 	state = WALK
-	anim.play("Walk")
+	anim_player.play("Walk")
+	anim_player_realm.play("Walk")
 
 func _enter_air_state(jumping: bool):
 	state = AIR
-	anim.play("Air")
+	anim_player.play("Air")
+	anim_player_realm.play("Air")
 	want_to_jump = false
 	jump_buffer = 0.0
 	if jumping:
