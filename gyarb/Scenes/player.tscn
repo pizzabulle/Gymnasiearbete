@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://clij8yv3adbfj"]
 
 [ext_resource type="Script" uid="uid://g14fby4kfgeg" path="res://Script/player.gd" id="1_vgqql"]
-[ext_resource type="SpriteFrames" uid="uid://cko422udxvkau" path="res://Animation/player.tres" id="2_cvnsp"]
-[ext_resource type="SpriteFrames" uid="uid://bj3kfka6o8m3y" path="res://Animation/player_realm.tres" id="3_6t5aa"]
+[ext_resource type="SpriteFrames" uid="uid://cko422udxvkau" path="res://Free/Animation/player.tres" id="2_cvnsp"]
+[ext_resource type="SpriteFrames" uid="uid://bj3kfka6o8m3y" path="res://Free/Animation/player_realm.tres" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 6.0
@@ -14,7 +14,9 @@ script = ExtResource("1_vgqql")
 
 [node name="Player" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_cvnsp")
-animation = &"Idle"
+animation = &"Walk"
+frame = 3
+frame_progress = 0.0558404
 speed_scale = 3.5
 
 [node name="Player_realm" type="AnimatedSprite2D" parent="."]
