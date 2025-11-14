@@ -17,6 +17,9 @@ var jump_buffer: float = 0.0
 @onready var anim_player: AnimatedSprite2D = $Player
 @onready var anim_player_realm: AnimatedSprite2D = $Player_realm
 @onready var block: TileMapLayer = $"../TileMapPlay"
+@onready var block_realm: TileMapLayer = $"../TileMapRealm"
+@onready var player: CharacterBody2D = $"."
+@onready var switch_timer: Timer = $"../SwitchTimer"
 
 
 ############### GAME LOOP #####################
@@ -31,14 +34,30 @@ func _physics_process(delta: float) -> void:
 			_air_state(delta)
 	
 	if Input.is_action_just_pressed("switch"):
+		
 		if anim_player.visible == true:
 			anim_player.visible = false
 			anim_player_realm.visible = true
-		
+#			
 		else:
 			anim_player.visible = true
 			anim_player_realm.visible = false
+			
+		
+
 	
+	
+	if anim_player.visible == true:
+		player.set_collision_mask_value(2,true)
+		player.set_collision_mask_value(3,false)
+		block.visible = true
+		block_realm.visible = false
+		
+	elif anim_player_realm.visible == true:
+		player.set_collision_mask_value(3,true)
+		player.set_collision_mask_value(2,false)
+		block.visible = false
+		block_realm.visible = true
 	
 		
 
@@ -143,5 +162,6 @@ func _enter_air_state(jumping: bool):
 	jump_buffer = 0.0
 	if jumping:
 		velocity += up_direction * JUMP_VELOCITY
+		
 		
 		
