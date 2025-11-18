@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=4 uid="uid://eu3iefcq6s3y"]
+
+[ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_v3rpw"]
+
+[node name="Level" instance=ExtResource("1_v3rpw")]
+
+[node name="TileMapPlay" parent="." index="0"]
+tile_map_data = PackedByteArray("AAAMAAYABgACAAMAAAALAAYABgABAAMAAAAKAAYABgABAAMAAAAJAAYABgABAAMAAAAIAAYABgABAAMAAAAHAAYABgABAAMAAAAGAAYABgABAAMAAAAFAAYABgABAAMAAAAEAAYABgABAAMAAAADAAYABgABAAMAAAACAAYABgABAAMAAAABAAYABgABAAMAAAAAAAYABgABAAMAAAD//wYABgABAAMAAAD+/wYABgABAAMAAAD9/wYABgABAAMAAAD8/wYABgABAAMAAAD7/wYABgAAAAMAAAA=")
+
+[node name="Player" parent="." index="2"]
+position = Vector2(839, 293)

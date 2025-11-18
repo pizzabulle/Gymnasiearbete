@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5c0co2dang7g"]
+
+[ext_resource type="Script" uid="uid://dy80pcbrrlkqw" path="res://Script/level_manager.gd" id="1_f6wcy"]
+
+[node name="LevelManager" type="Node2D"]
+script = ExtResource("1_f6wcy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

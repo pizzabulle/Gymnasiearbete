@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GYARB"
-run/main_scene="uid://cmwpgk36yckt6"
+run/main_scene="uid://dumcry11lpek1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Free/Terrain/icon.svg"
+
+[autoload]
+
+LevelManager="*res://Scenes/level_manager.tscn"
 
 [display]
 
