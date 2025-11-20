@@ -12,6 +12,7 @@ enum{IDLE, WALK, AIR}
 var state = IDLE
 var want_to_jump: bool = false
 var jump_buffer: float = 0.0
+var can_switch: bool = true	
 
 
 @onready var anim_player: AnimatedSprite2D = $Player
@@ -32,35 +33,8 @@ func _physics_process(delta: float) -> void:
 			_walk_state(delta)
 		AIR:
 			_air_state(delta)
+	switch_realm()
 	
-	if Input.is_action_just_pressed("switch"):
-		
-		if anim_player.visible == true:
-			anim_player.visible = false
-			anim_player_realm.visible = true
-#			
-		else:
-			anim_player.visible = true
-			anim_player_realm.visible = false
-			
-		
-		
-
-	
-	
-	if anim_player.visible == true:
-		player.set_collision_mask_value(2,true)
-		player.set_collision_mask_value(3,false)
-		block.visible = true
-		block_realm.visible = false
-		
-	elif anim_player_realm.visible == true:
-		player.set_collision_mask_value(3,true)
-		player.set_collision_mask_value(2,false)
-		block.visible = false
-		block_realm.visible = true
-	
-		
 
 ###########GENERAL HELP FUNCTIONS###############
 func _movement(delta: float, input_x: float) ->void:
@@ -165,4 +139,33 @@ func _enter_air_state(jumping: bool):
 		velocity += up_direction * JUMP_VELOCITY
 		
 		
+func switch_realm():
 		
+		if Input.is_action_just_pressed("switch") and can_switch:
+			can_switch = false
+		
+			if anim_player.visible == true:
+				anim_player.visible = false
+				anim_player_realm.visible = true
+				await get_tree().create_timer(0.5).timeout
+				can_switch = true
+			
+	#			
+			else:
+				anim_player.visible = true
+				anim_player_realm.visible = false
+				await get_tree().create_timer(0.5).timeout
+				can_switch = true
+		
+		
+		if anim_player.visible == true:
+			player.set_collision_mask_value(2,true)
+			player.set_collision_mask_value(3,false)
+			block.visible = true
+			block_realm.visible = false
+			
+		elif anim_player_realm.visible == true:
+			player.set_collision_mask_value(3,true)
+			player.set_collision_mask_value(2,false)
+			block.visible = false
+			block_realm.visible = true
