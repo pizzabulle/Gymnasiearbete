@@ -49,6 +49,7 @@ func _get_highscores() -> void:
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		LevelManager.change_to_next_level(level)
+		SwitchPosition.saved_position = player.global_position
 		
 		
 
@@ -57,3 +58,4 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 func _on_back_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		LevelManager.change_to_last_level(level)
+		SwitchPosition.saved_position = player.global_position

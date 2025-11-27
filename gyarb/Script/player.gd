@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		AIR:
 			_air_state(delta)
 	switch_realm()
+	print(SwitchPosition.saved_position)
 	
 
 ###########GENERAL HELP FUNCTIONS###############

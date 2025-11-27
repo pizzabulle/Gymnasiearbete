@@ -18,6 +18,7 @@ config/icon="res://Free/Terrain/icon.svg"
 [autoload]
 
 LevelManager="*res://Scenes/level_manager.tscn"
+SwitchPosition="*res://Script/switch_position.gd"
 
 [display]
 

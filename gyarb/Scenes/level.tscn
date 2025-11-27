@@ -58,6 +58,9 @@ shape = SubResource("RectangleShape2D_wqkje")
 position = Vector2(732, 987)
 shape = SubResource("RectangleShape2D_wqkje")
 
+[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+position = Vector2(344, 445)
+
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]
 [connection signal="body_entered" from="NextLevel" to="Player" method="_on_next_level_body_entered"]
 [connection signal="body_entered" from="BackLevel" to="." method="_on_back_level_body_entered"]
