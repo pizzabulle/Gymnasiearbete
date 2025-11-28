@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://da3le7d4hav6u" path="res://Free/Background/Background.png" id="6_qxfql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqkje"]
-size = Vector2(1452, 67)
+size = Vector2(2213, 67)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_wqkje")
@@ -19,6 +19,7 @@ tile_set = ExtResource("1_81xng")
 
 [node name="TileMapRealm" type="TileMapLayer" parent="."]
 position = Vector2(615, 526)
+scale = Vector2(2, 2)
 tile_set = ExtResource("2_wqkje")
 
 [node name="Player" parent="." instance=ExtResource("1_0f350")]
@@ -49,13 +50,13 @@ offset_bottom = 23.0
 [node name="NextLevel" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
-position = Vector2(727, -33)
+position = Vector2(717, -50)
 shape = SubResource("RectangleShape2D_wqkje")
 
 [node name="BackLevel" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BackLevel"]
-position = Vector2(732, 987)
+position = Vector2(799, 1002)
 shape = SubResource("RectangleShape2D_wqkje")
 
 [node name="PlayerSpawnPos" type="Marker2D" parent="."]

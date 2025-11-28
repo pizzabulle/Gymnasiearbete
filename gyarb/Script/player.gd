@@ -23,6 +23,11 @@ var can_switch: bool = true
 @onready var switch_timer: Timer = $"../SwitchTimer"
 
 
+
+func _ready() -> void:
+	if SwitchPosition.normal_realm == true:
+		anim_player.visible = true
+		anim_player_realm.visible = false
 ############### GAME LOOP #####################
 func _physics_process(delta: float) -> void:
 	
@@ -34,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		AIR:
 			_air_state(delta)
 	switch_realm()
-	print(SwitchPosition.saved_position)
+	#print(SwitchPosition.saved_position)
 	
 
 ###########GENERAL HELP FUNCTIONS###############
@@ -148,6 +153,7 @@ func switch_realm():
 			if anim_player.visible == true:
 				anim_player.visible = false
 				anim_player_realm.visible = true
+				SwitchPosition.normal_realm = false
 				await get_tree().create_timer(0.5).timeout
 				can_switch = true
 			
@@ -155,6 +161,7 @@ func switch_realm():
 			else:
 				anim_player.visible = true
 				anim_player_realm.visible = false
+				SwitchPosition.normal_realm = true	
 				await get_tree().create_timer(0.5).timeout
 				can_switch = true
 		

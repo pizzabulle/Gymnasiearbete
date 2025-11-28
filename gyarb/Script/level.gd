@@ -15,6 +15,13 @@ var highscores: Dictionary = {}
 @export var level = 1
 
 
+func _ready() -> void:
+	if SwitchPosition.saved_position != Vector2.ZERO:
+		player.global_position.x = SwitchPosition.saved_position.x
+		if SwitchPosition.saved_position.y < 500:
+			player.global_position.y = 875
+		else:
+			player.global_position.y = 50
 
 """
 
@@ -50,7 +57,8 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		LevelManager.change_to_next_level(level)
 		SwitchPosition.saved_position = player.global_position
-		
+		if SwitchPosition.normal_realm = 
+
 		
 
 
