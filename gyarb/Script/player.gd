@@ -26,8 +26,10 @@ var can_switch: bool = true
 
 func _ready() -> void:
 	if SwitchPosition.normal_realm == true:
-		anim_player.visible = true
-		anim_player_realm.visible = false
+		switch_from_realm_block()
+	elif SwitchPosition.normal_realm == false:
+		switch_to_realm_block()
+
 ############### GAME LOOP #####################
 func _physics_process(delta: float) -> void:
 	
@@ -39,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		AIR:
 			_air_state(delta)
 	switch_realm()
+	print(SwitchPosition.normal_realm)
 	#print(SwitchPosition.saved_position)
 	
 
@@ -144,36 +147,44 @@ func _enter_air_state(jumping: bool):
 	if jumping:
 		velocity += up_direction * JUMP_VELOCITY
 		
-		
+func switch_to_realm():
+	anim_player.visible = false
+	anim_player_realm.visible = true
+	SwitchPosition.normal_realm = false
+	
+	await get_tree().create_timer(0.5).timeout
+	can_switch = true
+	
+func switch_to_realm_block():
+	player.set_collision_mask_value(3,true)
+	player.set_collision_mask_value(2,false)
+	block.visible = false
+	block_realm.visible = true
+	
+	
+func switch_from_realm():
+	anim_player.visible = true
+	anim_player_realm.visible = false
+	SwitchPosition.normal_realm = true	
+	await get_tree().create_timer(0.5).timeout
+	can_switch = true
+func switch_from_realm_block():
+	player.set_collision_mask_value(2,true)
+	player.set_collision_mask_value(3,false)
+	block.visible = true
+	block_realm.visible = false
+	
+	
+	
+	
 func switch_realm():
-		
 		if Input.is_action_just_pressed("switch") and can_switch:
 			can_switch = false
-		
 			if anim_player.visible == true:
-				anim_player.visible = false
-				anim_player_realm.visible = true
+				switch_to_realm()
+				switch_to_realm_block()
 				SwitchPosition.normal_realm = false
-				await get_tree().create_timer(0.5).timeout
-				can_switch = true
-			
-	#			
-			else:
-				anim_player.visible = true
-				anim_player_realm.visible = false
-				SwitchPosition.normal_realm = true	
-				await get_tree().create_timer(0.5).timeout
-				can_switch = true
-		
-		
-		if anim_player.visible == true:
-			player.set_collision_mask_value(2,true)
-			player.set_collision_mask_value(3,false)
-			block.visible = true
-			block_realm.visible = false
-			
-		elif anim_player_realm.visible == true:
-			player.set_collision_mask_value(3,true)
-			player.set_collision_mask_value(2,false)
-			block.visible = false
-			block_realm.visible = true
+			elif anim_player.visible == false:
+				switch_from_realm()
+				switch_from_realm_block()
+				SwitchPosition.normal_realm = true

@@ -57,7 +57,7 @@ func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		LevelManager.change_to_next_level(level)
 		SwitchPosition.saved_position = player.global_position
-		if SwitchPosition.normal_realm = 
+	
 
 		
 
