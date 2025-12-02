@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cmwpgk36yckt6"]
 
 [ext_resource type="PackedScene" uid="uid://clij8yv3adbfj" path="res://Scenes/player.tscn" id="1_0f350"]
-[ext_resource type="TileSet" uid="uid://4lkgk0x5weho" path="res://Free/TileMap/TilesetPlayer.tres" id="1_81xng"]
+[ext_resource type="TileSet" uid="uid://4lkgk0x5weho" path="res://Free/SavedTres/TilesetPlayer.tres" id="1_81xng"]
 [ext_resource type="Script" uid="uid://bb1glxj6niu8f" path="res://Script/level.gd" id="1_wqkje"]
-[ext_resource type="TileSet" uid="uid://v57bkq6vs7x7" path="res://Free/TileMap/TileSetRealm.tres" id="2_wqkje"]
+[ext_resource type="TileSet" uid="uid://v57bkq6vs7x7" path="res://Free/SavedTres/TileSetRealm.tres" id="2_wqkje"]
 [ext_resource type="Texture2D" uid="uid://da3le7d4hav6u" path="res://Free/Background/Background.png" id="6_qxfql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqkje"]
@@ -25,8 +25,7 @@ tile_set = ExtResource("2_wqkje")
 [node name="Player" parent="." instance=ExtResource("1_0f350")]
 position = Vector2(594, 298)
 scale = Vector2(2, 2)
-collision_layer = 1
-collision_mask = 2
+collision_layer = 3
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -11
@@ -36,10 +35,6 @@ position = Vector2(756, 443)
 scale = Vector2(2.772, 1.919)
 texture = ExtResource("6_qxfql")
 metadata/_edit_lock_ = true
-
-[node name="SwitchTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -63,5 +58,4 @@ shape = SubResource("RectangleShape2D_wqkje")
 position = Vector2(344, 445)
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]
-[connection signal="body_entered" from="NextLevel" to="Player" method="_on_next_level_body_entered"]
 [connection signal="body_entered" from="BackLevel" to="." method="_on_back_level_body_entered"]

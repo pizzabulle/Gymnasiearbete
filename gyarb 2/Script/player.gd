@@ -4,32 +4,28 @@ class_name Player
 
 const MAX_SPEED = 300
 const ACC = 2500
-const JUMP_VELOCITY = 600
+const JUMP_VELOCITY = 570
 const GRAVITY = 1250
 
 enum{IDLE, WALK, AIR}
-
 var state = IDLE
 var want_to_jump: bool = false
 var jump_buffer: float = 0.0
 var can_switch: bool = true	
 
 
+
+@onready var player: CharacterBody2D = $"."
 @onready var anim_player: AnimatedSprite2D = $Player
 @onready var anim_player_realm: AnimatedSprite2D = $Player_realm
-@onready var block: TileMapLayer = $"../TileMapPlay"
-@onready var block_realm: TileMapLayer = $"../TileMapRealm"
-@onready var player: CharacterBody2D = $"."
-@onready var switch_timer: Timer = $"../SwitchTimer"
-
 
 
 func _ready() -> void:
 	if SwitchPosition.normal_realm == true:
-		switch_from_realm_block()
+		switch_from_realm()
 	elif SwitchPosition.normal_realm == false:
-		switch_to_realm_block()
-
+		switch_to_realm()
+	
 ############### GAME LOOP #####################
 func _physics_process(delta: float) -> void:
 	
@@ -40,9 +36,7 @@ func _physics_process(delta: float) -> void:
 			_walk_state(delta)
 		AIR:
 			_air_state(delta)
-	switch_realm()
-	print(SwitchPosition.normal_realm)
-	#print(SwitchPosition.saved_position)
+	switch_realm_player()
 	
 
 ###########GENERAL HELP FUNCTIONS###############
@@ -127,6 +121,7 @@ func _air_state(delta: float) -> void:
 		_enter_walk_state()
 		
 		
+
 ############ ENTER STATE FUNCTIONS ###############
 func _enter_idle_state():
 	state = IDLE
@@ -147,44 +142,41 @@ func _enter_air_state(jumping: bool):
 	if jumping:
 		velocity += up_direction * JUMP_VELOCITY
 		
+		
+		
 func switch_to_realm():
+	player.set_collision_mask_value(3,false)
+	player.set_collision_mask_value(4,true)
+	player.set_collision_mask_value(5,false)
+	player.set_collision_mask_value(6,true)	
 	anim_player.visible = false
 	anim_player_realm.visible = true
 	SwitchPosition.normal_realm = false
-	
 	await get_tree().create_timer(0.5).timeout
 	can_switch = true
 	
-func switch_to_realm_block():
-	player.set_collision_mask_value(3,true)
-	player.set_collision_mask_value(2,false)
-	block.visible = false
-	block_realm.visible = true
-	
-	
+
+
 func switch_from_realm():
+	player.set_collision_mask_value(3,true)
+	player.set_collision_mask_value(4,false)
+	player.set_collision_mask_value(5,true)
+	player.set_collision_mask_value(6,false)
 	anim_player.visible = true
 	anim_player_realm.visible = false
 	SwitchPosition.normal_realm = true	
 	await get_tree().create_timer(0.5).timeout
 	can_switch = true
-func switch_from_realm_block():
-	player.set_collision_mask_value(2,true)
-	player.set_collision_mask_value(3,false)
-	block.visible = true
-	block_realm.visible = false
+	
+
 	
 	
-	
-	
-func switch_realm():
+func switch_realm_player():
 		if Input.is_action_just_pressed("switch") and can_switch:
 			can_switch = false
 			if anim_player.visible == true:
 				switch_to_realm()
-				switch_to_realm_block()
 				SwitchPosition.normal_realm = false
 			elif anim_player.visible == false:
 				switch_from_realm()
-				switch_from_realm_block()
 				SwitchPosition.normal_realm = true
