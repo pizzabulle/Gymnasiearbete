@@ -11,7 +11,6 @@ enum{IDLE, WALK, AIR}
 var state = IDLE
 var want_to_jump: bool = false
 var jump_buffer: float = 0.0
-var can_switch: bool = true	
 
 
 
@@ -21,6 +20,7 @@ var can_switch: bool = true
 
 
 func _ready() -> void:
+	SwitchPosition.connect("realm_changed" , switch_realm_player)
 	if SwitchPosition.normal_realm == true:
 		switch_from_realm()
 	elif SwitchPosition.normal_realm == false:
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			_walk_state(delta)
 		AIR:
 			_air_state(delta)
-	switch_realm_player()
+	print(velocity)
 	
 
 ###########GENERAL HELP FUNCTIONS###############
@@ -98,7 +98,8 @@ func _walk_state(delta: float) -> void:
 		_enter_idle_state()
 	elif not is_on_floor():
 		_enter_air_state(false)
-	
+
+
 func _air_state(delta: float) -> void:
 	#1
 	if Input.is_action_just_pressed("jump"):
@@ -145,38 +146,27 @@ func _enter_air_state(jumping: bool):
 		
 		
 func switch_to_realm():
+	player.set_collision_layer_value(1,false)
+	player.set_collision_layer_value(2,true)	
 	player.set_collision_mask_value(3,false)
 	player.set_collision_mask_value(4,true)
-	player.set_collision_mask_value(5,false)
-	player.set_collision_mask_value(6,true)	
 	anim_player.visible = false
 	anim_player_realm.visible = true
-	SwitchPosition.normal_realm = false
-	await get_tree().create_timer(0.5).timeout
-	can_switch = true
-	
 
 
 func switch_from_realm():
+	player.set_collision_layer_value(1,true)
+	player.set_collision_layer_value(2,false)
 	player.set_collision_mask_value(3,true)
 	player.set_collision_mask_value(4,false)
-	player.set_collision_mask_value(5,true)
-	player.set_collision_mask_value(6,false)
+
 	anim_player.visible = true
 	anim_player_realm.visible = false
-	SwitchPosition.normal_realm = true	
-	await get_tree().create_timer(0.5).timeout
-	can_switch = true
-	
 
 	
 	
 func switch_realm_player():
-		if Input.is_action_just_pressed("switch") and can_switch:
-			can_switch = false
-			if anim_player.visible == true:
-				switch_to_realm()
-				SwitchPosition.normal_realm = false
-			elif anim_player.visible == false:
-				switch_from_realm()
-				SwitchPosition.normal_realm = true
+	if anim_player.visible == true:
+		switch_to_realm()
+	elif anim_player.visible == false:
+		switch_from_realm()

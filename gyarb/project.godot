@@ -55,7 +55,7 @@ switch={
 2d_physics/layer_3="WorldNorm"
 2d_physics/layer_4="WorldRealm"
 2d_physics/layer_5="HeliNorm"
-2d_physics/layer_6="HeliRealm"
+2d_physics/layer_7="Barrier"
 
 [rendering]
 

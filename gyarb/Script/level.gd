@@ -23,9 +23,9 @@ func _ready() -> void:
 	if SwitchPosition.saved_position != Vector2.ZERO:
 		player.global_position.x = SwitchPosition.saved_position.x
 		if SwitchPosition.saved_position.y < 500:
-			player.global_position.y = 875
+			player.global_position.y = 845
 		else:
-			player.global_position.y = 50
+			player.global_position.y = 10
 	if SwitchPosition.normal_realm == true:
 		switch_from_realm_block()
 	elif SwitchPosition.normal_realm == false:
@@ -35,6 +35,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	switch_realm_block()
+	#print(SwitchPosition.normal_realm)
 
 
 func switch_to_realm_block():
@@ -54,22 +55,22 @@ func switch_from_realm_block():
 func switch_realm_block():
 	if Input.is_action_just_pressed("switch") and can_switch:
 		can_switch = false
+		SwitchPosition.emit_signal("realm_changed")
+	
 		if SwitchPosition.normal_realm == true:
 			switch_to_realm_block()
-			SwitchPosition.normal_realm == false
+			SwitchPosition.normal_realm = false
 		elif SwitchPosition.normal_realm == false:
 			switch_from_realm_block()
-			SwitchPosition.normal_realm == false
-
+			SwitchPosition.normal_realm = true
 
 
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		LevelManager.change_to_next_level(level)
 		SwitchPosition.saved_position = player.global_position
-	
-
 		
+	
 
 
 

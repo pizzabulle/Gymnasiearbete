@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctxebg4xiagpo"]
+[gd_scene load_steps=7 format=3 uid="uid://ocee18yrjk4b"]
 
 [ext_resource type="Texture2D" uid="uid://b7x0bskglp2mu" path="res://Free/Terrain/Helicopter.png" id="1_1or3h"]
 [ext_resource type="Curve2D" uid="uid://dwcrxut6j3p53" path="res://Free/SavedTres/Heli_Side_.tres" id="1_xccmw"]
-[ext_resource type="Script" uid="uid://dunn5jiu06k7b" path="res://Script/heli.gd" id="2_pnpfv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gub7i"]
 size = Vector2(176.25, 18.5)
@@ -41,17 +40,17 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gub7i"]
 _data = {
-&"Heli_Side": SubResource("Animation_1or3h"),
+&"Heli_Side_Norm": SubResource("Animation_1or3h"),
 &"RESET": SubResource("Animation_aq3iq")
 }
 
 [node name="Heli_Side_Norm" type="Path2D"]
 curve = ExtResource("1_xccmw")
-script = ExtResource("2_pnpfv")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(33, 40)
-metadata/_edit_lock_ = true
+rotates = false
+loop = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
 remote_path = NodePath("../../AnimatableBody2D")

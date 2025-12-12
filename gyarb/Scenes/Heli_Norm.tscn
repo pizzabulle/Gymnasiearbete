@@ -1,7 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgtr3qq1amsst"]
+[gd_scene load_steps=8 format=3 uid="uid://d3jq43xifwlr"]
 
-[ext_resource type="Script" uid="uid://dunn5jiu06k7b" path="res://Script/heli.gd" id="1_877it"]
-[ext_resource type="Texture2D" uid="uid://b7x0bskglp2mu" path="res://Free/Terrain/Helicopter.png" id="1_s8lrj"]
+[ext_resource type="Script" uid="uid://21cpyghjs8an" path="res://Script/heli_norm.gd" id="1_g8jso"]
+[ext_resource type="Texture2D" uid="uid://b7x0bskglp2mu" path="res://Free/Terrain/Helicopter.png" id="1_qj4i5"]
+
+[sub_resource type="Curve2D" id="Curve2D_877it"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 277, 485, 0, 0, 0, 0, 0, -355)
+}
+point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8lrj"]
 size = Vector2(176.25, 18.5)
@@ -40,15 +46,17 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6o2qj"]
 _data = {
-&"Heli_Up": SubResource("Animation_5o0lt"),
+&"Heli_Norm": SubResource("Animation_5o0lt"),
 &"RESET": SubResource("Animation_s8lrj")
 }
 
-[node name="Heli_Up_Norm" type="Path2D"]
-script = ExtResource("1_877it")
+[node name="Heli_Norm" type="Path2D"]
+curve = SubResource("Curve2D_877it")
+script = ExtResource("1_g8jso")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotation = -1.5708
+rotates = false
 metadata/_edit_lock_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
@@ -56,12 +64,12 @@ remote_path = NodePath("../../AnimatableBody2D")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 rotation = -1.5708
-collision_layer = 16
+collision_layer = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
 position = Vector2(-19, 32)
 rotation = 1.5708
-texture = ExtResource("1_s8lrj")
+texture = ExtResource("1_qj4i5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 position = Vector2(-81, 2)
