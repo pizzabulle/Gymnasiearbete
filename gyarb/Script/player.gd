@@ -4,10 +4,10 @@ class_name Player
 
 const MAX_SPEED = 300
 const ACC = 2500
-const JUMP_VELOCITY = 570
+const JUMP_VELOCITY = 600
 const GRAVITY = 1250
 
-enum{IDLE, WALK, AIR}
+enum{IDLE, WALK, AIR,DEAD}
 var state = IDLE
 var want_to_jump: bool = false
 var jump_buffer: float = 0.0
@@ -20,6 +20,7 @@ var jump_buffer: float = 0.0
 
 
 func _ready() -> void:
+	player.velocity = SwitchPosition.saved_velocity
 	SwitchPosition.connect("realm_changed" , switch_realm_player)
 	if SwitchPosition.normal_realm == true:
 		switch_from_realm()
@@ -28,7 +29,8 @@ func _ready() -> void:
 	
 ############### GAME LOOP #####################
 func _physics_process(delta: float) -> void:
-	
+	#print(player.velocity.y)
+	switch_velocity()
 	match state:
 		IDLE:
 			_idle_state(delta)
@@ -36,8 +38,8 @@ func _physics_process(delta: float) -> void:
 			_walk_state(delta)
 		AIR:
 			_air_state(delta)
-	print(velocity)
-	
+		DEAD:
+			_dead_state(delta)
 
 ###########GENERAL HELP FUNCTIONS###############
 func _movement(delta: float, input_x: float) ->void:
@@ -120,8 +122,9 @@ func _air_state(delta: float) -> void:
 		_enter_idle_state()
 	elif is_on_floor():
 		_enter_walk_state()
-		
-		
+
+func _dead_state(delta: float) -> void:
+	_movement(delta, 0)
 
 ############ ENTER STATE FUNCTIONS ###############
 func _enter_idle_state():
@@ -142,9 +145,28 @@ func _enter_air_state(jumping: bool):
 	jump_buffer = 0.0
 	if jumping:
 		velocity += up_direction * JUMP_VELOCITY
-		
-		
-		
+
+func enter_dead_state(dir: Vector2) -> void:
+	state = DEAD
+	$CollisionShape2D.set_deferred("disabled", true)
+	var tween = get_tree().create_tween()
+	if anim_player.flip_h == true:
+		tween.tween_property(self, "rotation", rotation + PI/2, 0.25)
+	elif anim_player.flip_h == false:
+		tween.tween_property(self, "rotation", rotation - PI/2, 0.25)
+
+func enter_revive_state():
+	$CollisionShape2D.set_deferred("disabled", false)
+	state = AIR
+	anim_player.play("Air")
+	anim_player_realm.play("Air")
+	var tween = get_tree().create_tween()
+	if anim_player.flip_h == true:
+		tween.tween_property(self, "global_rotation", 0, 0.5)
+	elif anim_player.flip_h == false:
+		tween.tween_property(self, "rotation", 0 , 0.5)
+
+
 func switch_to_realm():
 	player.set_collision_layer_value(1,false)
 	player.set_collision_layer_value(2,true)	
@@ -170,3 +192,11 @@ func switch_realm_player():
 		switch_to_realm()
 	elif anim_player.visible == false:
 		switch_from_realm()
+
+
+func switch_velocity():
+	if player.global_position.y > 940:
+		SwitchPosition.saved_velocity = player.velocity - Vector2(0,900)
+
+	elif player.global_position.y < -100 and player.velocity.y >900:
+		SwitchPosition.saved_velocity = player.velocity - Vector2(0,900)

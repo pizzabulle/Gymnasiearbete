@@ -1,8 +1,25 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://cko422udxvkau"]
+[gd_resource type="SpriteFrames" load_steps=32 format=3 uid="uid://cko422udxvkau"]
 
 [ext_resource type="Texture2D" uid="uid://cnv83ekhe5h74" path="res://Free/Main Characters/Ninja Frog/Jump (32x32).png" id="1_6uut7"]
 [ext_resource type="Texture2D" uid="uid://dcao0o7rteihs" path="res://Free/Main Characters/Ninja Frog/Idle (32x32).png" id="2_gyt1r"]
+[ext_resource type="Texture2D" uid="uid://cdoi4tvadadoo" path="res://Free/Main Characters/Ninja Frog/Double Jump (32x32).png" id="2_rc34n"]
 [ext_resource type="Texture2D" uid="uid://bhqe7dpoitwkb" path="res://Free/Main Characters/Ninja Frog/Run (32x32).png" id="3_rc34n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4045p"]
+atlas = ExtResource("2_rc34n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ii33"]
+atlas = ExtResource("2_rc34n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8eit3"]
+atlas = ExtResource("2_rc34n")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyt1r"]
+atlas = ExtResource("1_6uut7")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
 atlas = ExtResource("2_gyt1r")
@@ -100,11 +117,20 @@ region = Rect2(352, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_6uut7")
+"texture": SubResource("AtlasTexture_4045p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ii33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8eit3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyt1r")
 }],
-"loop": true,
+"loop": false,
 "name": &"Air",
-"speed": 5.0
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,

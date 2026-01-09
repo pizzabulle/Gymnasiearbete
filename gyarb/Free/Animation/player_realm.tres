@@ -1,12 +1,21 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://bj3kfka6o8m3y"]
+[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://bj3kfka6o8m3y"]
 
 [ext_resource type="Texture2D" uid="uid://caj4802nrulre" path="res://Free/Main Characters/Pink Man/Jump (32x32).png" id="1_bjmcu"]
 [ext_resource type="Texture2D" uid="uid://x5hnw3pr6fg" path="res://Free/Main Characters/Pink Man/Idle (32x32).png" id="2_4kxwg"]
+[ext_resource type="Texture2D" uid="uid://c0nlgk311qm7o" path="res://Free/Main Characters/Pink Man/Double Jump (32x32).png" id="2_v122m"]
 [ext_resource type="Texture2D" uid="uid://831ckba8t5f2" path="res://Free/Main Characters/Pink Man/Run (32x32).png" id="3_b6neq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qv0e6"]
-atlas = ExtResource("1_bjmcu")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4tqe"]
+atlas = ExtResource("2_v122m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glitt"]
+atlas = ExtResource("2_v122m")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bkoi"]
+atlas = ExtResource("2_v122m")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwlbu"]
 atlas = ExtResource("2_4kxwg")
@@ -104,11 +113,20 @@ region = Rect2(352, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qv0e6")
+"texture": SubResource("AtlasTexture_b4tqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glitt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bkoi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_bjmcu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Air",
-"speed": 5.0
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,

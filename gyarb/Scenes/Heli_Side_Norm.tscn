@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ocee18yrjk4b"]
+[gd_scene load_steps=7 format=3 uid="uid://28r3aem3km1v"]
 
 [ext_resource type="Texture2D" uid="uid://b7x0bskglp2mu" path="res://Free/Terrain/Helicopter.png" id="1_1or3h"]
 [ext_resource type="Curve2D" uid="uid://dwcrxut6j3p53" path="res://Free/SavedTres/Heli_Side_.tres" id="1_xccmw"]
