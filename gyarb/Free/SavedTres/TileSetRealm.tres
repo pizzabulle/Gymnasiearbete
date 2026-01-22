@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://v57bkq6vs7x7"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://v57bkq6vs7x7"]
 
 [ext_resource type="Texture2D" uid="uid://dikieg038ursh" path="res://Free/Terrain/Tileset_pack/Grass_tileset.png" id="1_edkij"]
+[ext_resource type="PhysicsMaterial" uid="uid://crxlm72am6eli" path="res://Free/SavedTres/TilePhysPlayer.tres" id="1_r735d"]
 [ext_resource type="Texture2D" uid="uid://byfcu5g2o5d6m" path="res://Free/Terrain/Tileset_pack/Stone_tileset.png" id="2_dm15c"]
 [ext_resource type="Texture2D" uid="uid://cgjegp1tp5r3y" path="res://Free/Terrain/Tileset_pack/Snow_tileset.png" id="3_i3ud7"]
 [ext_resource type="Texture2D" uid="uid://ut8d7smouc2g" path="res://Free/Terrain/Tileset_pack/Cloud_tileset.png" id="4_asoy7"]
@@ -1406,7 +1407,8 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 8
-physics_layer_0/collision_mask = 2
+physics_layer_0/collision_mask = 32
+physics_layer_0/physics_material = ExtResource("1_r735d")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
 terrain_set_0/terrain_0/color = Color(0.501961, 1, 0.25098, 1)

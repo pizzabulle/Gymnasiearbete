@@ -26,10 +26,8 @@ func _ready() -> void:
 		switch_from_realm()
 	elif SwitchPosition.normal_realm == false:
 		switch_to_realm()
-	
 ############### GAME LOOP #####################
 func _physics_process(delta: float) -> void:
-	#print(player.velocity.y)
 	switch_velocity()
 	match state:
 		IDLE:
@@ -148,7 +146,8 @@ func _enter_air_state(jumping: bool):
 
 func enter_dead_state(dir: Vector2) -> void:
 	state = DEAD
-	$CollisionShape2D.set_deferred("disabled", true)
+	player.set_collision_mask_value(3,false)
+	player.set_collision_mask_value(4,false)
 	var tween = get_tree().create_tween()
 	if anim_player.flip_h == true:
 		tween.tween_property(self, "rotation", rotation + PI/2, 0.25)
@@ -156,15 +155,16 @@ func enter_dead_state(dir: Vector2) -> void:
 		tween.tween_property(self, "rotation", rotation - PI/2, 0.25)
 
 func enter_revive_state():
-	$CollisionShape2D.set_deferred("disabled", false)
+	player.set_collision_mask_value(3,true)
+	player.set_collision_mask_value(4,true)
 	state = AIR
 	anim_player.play("Air")
 	anim_player_realm.play("Air")
 	var tween = get_tree().create_tween()
 	if anim_player.flip_h == true:
-		tween.tween_property(self, "global_rotation", 0, 0.5)
+		tween.tween_property(self, "global_rotation", 0, 0.1)
 	elif anim_player.flip_h == false:
-		tween.tween_property(self, "rotation", 0 , 0.5)
+		tween.tween_property(self, "rotation", 0 , 0.1)
 
 
 func switch_to_realm():
@@ -181,6 +181,7 @@ func switch_from_realm():
 	player.set_collision_layer_value(2,false)
 	player.set_collision_mask_value(3,true)
 	player.set_collision_mask_value(4,false)
+	
 
 	anim_player.visible = true
 	anim_player_realm.visible = false

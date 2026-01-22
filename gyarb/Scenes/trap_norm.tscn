@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://o0c61ntjcmee"]
+
+[ext_resource type="Script" uid="uid://yk4bcprjh2d2" path="res://Script/trap_norm.gd" id="1_bmsoo"]
+[ext_resource type="Texture2D" uid="uid://driel3qhr16gr" path="res://Free/Items/Fruits/ChatGPT Image 22 jan. 2026 12_44_25.png" id="2_bmsoo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmcxk"]
+size = Vector2(12, 7)
+
+[node name="TrapNorm" type="Area2D"]
+scale = Vector2(6, 6)
+collision_layer = 4
+script = ExtResource("1_bmsoo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.05, 0.3)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("2_bmsoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xmcxk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,13 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmwpgk36yckt6"]
+[gd_scene load_steps=10 format=3 uid="uid://cmwpgk36yckt6"]
 
 [ext_resource type="PackedScene" uid="uid://clij8yv3adbfj" path="res://Scenes/player.tscn" id="1_0f350"]
 [ext_resource type="TileSet" uid="uid://4lkgk0x5weho" path="res://Free/SavedTres/TilesetPlayer.tres" id="1_81xng"]
 [ext_resource type="Script" uid="uid://bb1glxj6niu8f" path="res://Script/level.gd" id="1_wqkje"]
 [ext_resource type="TileSet" uid="uid://v57bkq6vs7x7" path="res://Free/SavedTres/TileSetRealm.tres" id="2_wqkje"]
+[ext_resource type="FontFile" uid="uid://bf2x16hakilg4" path="res://Free/Menu/Text/Boxy-Bold.ttf" id="6_0f350"]
 [ext_resource type="Texture2D" uid="uid://da3le7d4hav6u" path="res://Free/Background/Background.png" id="6_qxfql"]
+[ext_resource type="Texture2D" uid="uid://ckh24ge4j62ho" path="res://Free/Menu/Levels/01.png" id="7_8c0lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqkje"]
-size = Vector2(2213, 67)
+size = Vector2(2213, 111.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f350"]
 size = Vector2(211, 1056.5)
@@ -19,16 +21,18 @@ script = ExtResource("1_wqkje")
 position = Vector2(617, 528)
 scale = Vector2(2, 2)
 tile_set = ExtResource("1_81xng")
+metadata/_edit_lock_ = true
 
 [node name="TileMapRealm" type="TileMapLayer" parent="."]
-position = Vector2(615, 526)
+position = Vector2(617, 528)
 scale = Vector2(2, 2)
 tile_set = ExtResource("2_wqkje")
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_0f350")]
 position = Vector2(594, 298)
 scale = Vector2(2, 2)
-collision_mask = 84
+collision_mask = 68
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -11
@@ -42,18 +46,34 @@ metadata/_edit_lock_ = true
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="TimeLabel" type="Label" parent="HUD"]
+offset_left = 48.0
+offset_top = 25.0
+offset_right = 88.0
+offset_bottom = 48.0
+scale = Vector2(2, 2)
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = ExtResource("6_0f350")
+theme_override_font_sizes/font_size = 20
+text = "Time  : mm:ss"
+metadata/_edit_lock_ = true
+
+[node name="HighscoreLabel" type="Label" parent="HUD"]
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="NextLevel" type="Area2D" parent="."]
+visible = false
+collision_layer = 128
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
-position = Vector2(717, -50)
+position = Vector2(717, -70)
 shape = SubResource("RectangleShape2D_wqkje")
 metadata/_edit_lock_ = true
 
 [node name="BackLevel" type="Area2D" parent="."]
+visible = false
+collision_layer = 128
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BackLevel"]
@@ -61,10 +81,8 @@ position = Vector2(799, 1002)
 shape = SubResource("RectangleShape2D_wqkje")
 metadata/_edit_lock_ = true
 
-[node name="PlayerSpawnPos" type="Marker2D" parent="."]
-position = Vector2(344, 445)
-
 [node name="Wall" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 3
 metadata/_edit_lock_ = true
@@ -77,6 +95,12 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2(-96, 509)
 shape = SubResource("RectangleShape2D_0f350")
+metadata/_edit_lock_ = true
+
+[node name="Level_Nr" type="Sprite2D" parent="."]
+position = Vector2(70, 113)
+scale = Vector2(3, 3)
+texture = ExtResource("7_8c0lf")
 metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]
