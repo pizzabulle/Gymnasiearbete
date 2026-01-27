@@ -162,7 +162,7 @@ func enter_revive_state():
 	anim_player_realm.play("Air")
 	var tween = get_tree().create_tween()
 	if anim_player.flip_h == true:
-		tween.tween_property(self, "global_rotation", 0, 0.1)
+		tween.tween_property(self, "rotation", 0, 0.1)
 	elif anim_player.flip_h == false:
 		tween.tween_property(self, "rotation", 0 , 0.1)
 
@@ -181,8 +181,6 @@ func switch_from_realm():
 	player.set_collision_layer_value(2,false)
 	player.set_collision_mask_value(3,true)
 	player.set_collision_mask_value(4,false)
-	
-
 	anim_player.visible = true
 	anim_player_realm.visible = false
 

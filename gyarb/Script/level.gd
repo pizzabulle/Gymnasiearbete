@@ -37,10 +37,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	switch_realm_block()
-	if player.get_collision_layer_value(3):
-		print("norm")
-	#elif player.get_collision_mask_value(4):
-		#print("realm")
 	if not game_completed:
 		time += delta
 		var time_string = _from_seconds_to_time(time)
@@ -68,9 +64,9 @@ func _save_highscore(level_name: String) -> void:
 	file.close()
 
 func _from_seconds_to_time(seconds: float) -> String:
-	var min = int(seconds / 60)
-	var sec = int(seconds - min*60)
-	return "%02d:%02d" % [min, sec]
+	var minu = int(seconds / 60)
+	var sec = int(seconds - minu*60)
+	return "%02d:%02d" % [minu, sec]
 
 func switch_to_realm_block():
 	block.visible = false
@@ -97,6 +93,8 @@ func switch_realm_block():
 		elif SwitchPosition.normal_realm == false:
 			switch_from_realm_block()
 			SwitchPosition.normal_realm = true
+
+
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player: 
 		SwitchPosition.level_nr +=1

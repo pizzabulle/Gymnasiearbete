@@ -1,4 +1,3 @@
-
 extends Path2D
 
 @export var loop = false

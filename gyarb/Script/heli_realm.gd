@@ -4,7 +4,6 @@ extends Path2D
 @export var speed = 2
 @export var speed_scale = 0.3
 
-
 @onready var path = $PathFollow2D
 @onready var anim = $AnimationPlayer
 @onready var heli_realm = $AnimatableBody2D/Sprite2D

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://caxnx3sr6ed3q"]
+
+[ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_i1va2"]
+[ext_resource type="Texture2D" uid="uid://c36dj8gw3x7h6" path="res://Free/Menu/Buttons/K-Button.png" id="2_5eaas"]
+
+[node name="Level" instance=ExtResource("1_i1va2")]
+
+[node name="K-button" type="Sprite2D" parent="." index="9"]
+position = Vector2(247, 165)
+scale = Vector2(4, 4)
+texture = ExtResource("2_5eaas")
