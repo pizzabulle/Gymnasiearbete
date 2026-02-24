@@ -104,6 +104,9 @@ func _air_state(delta: float) -> void:
 	#1
 	if Input.is_action_just_pressed("jump"):
 		want_to_jump = true
+	if want_to_jump and is_on_floor():
+		if want_to_jump and  get_tree().create_timer(0.1).time_left:
+			_enter_air_state(true)
 	var input_x = Input.get_axis("move left","move right")
 	_update_direction(input_x)
 	#2

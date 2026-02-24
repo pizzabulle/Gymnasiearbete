@@ -1,15 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://eu3iefcq6s3y"]
+[gd_scene load_steps=4 format=4 uid="uid://eu3iefcq6s3y"]
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_v3rpw"]
-[ext_resource type="Texture2D" uid="uid://b64wi1bw552ix" path="res://Free/Menu/Levels/02.png" id="3_12fag"]
+[ext_resource type="Texture2D" uid="uid://b64wi1bw552ix" path="res://Free/Menu/Levels/02.png" id="2_12fag"]
+[ext_resource type="Texture2D" uid="uid://c36dj8gw3x7h6" path="res://Free/Menu/Buttons/K-Button.png" id="2_smnlx"]
 
 [node name="Level" instance=ExtResource("1_v3rpw")]
 
 [node name="TileMapPlay" parent="." index="0"]
-tile_map_data = PackedByteArray(0, 0, 5, 0, 6, 0, 6, 0, 1, 0, 3, 0, 0, 0, 4, 0, 6, 0, 6, 0, 0, 0, 3, 0, 0, 0, 6, 0, 6, 0, 6, 0, 1, 0, 3, 0, 0, 0, 7, 0, 6, 0, 6, 0, 2, 0, 3, 0, 0, 0, 0, 0, 4, 0, 6, 0, 3, 0, 3, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAFAAYABgABAAMAAAAEAAYABgAAAAMAAAAGAAYABgABAAMAAAAHAAYABgACAAMAAAABAAUABgADAAMAAAAAAAQABgACAAMAAAD//wQABgABAAMAAAD+/wQABgAEAAMAAAD+/wMABgADAAEAAAD+/wIABgADAAEAAAD+/wEABgADAAAAAAABAAAABgAAAAMAAAACAAAABgABAAMAAAADAAAABgAGAAMAAAAEAAAABgACAAIAAAADAP//BgAAAAAAAAAEAP//BgAFAAAAAAAFAP//BgAHAAMAAAAFAP7/BgADAAAAAAA=")
+
+[node name="TileMapRealm" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAFAAYAAwABAAMAAAAEAAYAAwAAAAMAAAAGAAYAAwACAAMAAAABAAUAAwADAAMAAAAAAAQAAwACAAMAAAD//wQAAwABAAMAAAD+/wQAAwABAAMAAAD9/wQAAwABAAMAAAD8/wQAAwAEAAMAAAD8/wMAAwADAAAAAAAIAP3/AwAAAAMAAAAJAPz/AwAAAAAAAAAJAP3/AwAGAAMAAAAKAP3/AwACAAIAAAAKAPz/AwACAAAAAAAGAPr/AwACAAMAAAAFAPr/AwAFAAMAAAAEAPr/AwABAAIAAAAEAPn/AwABAAAAAAAFAPn/AwACAAAAAAADAPn/AwABAAEAAAABAPj/AwAAAAAAAAABAPn/AwAAAAEAAAACAPn/AwAFAAEAAAADAPr/AwABAAIAAAACAPr/AwABAAIAAAABAPr/AwAAAAIAAAADAPj/AwACAAAAAAACAPj/AwABAAAAAAA=")
 
 [node name="Player" parent="." index="2"]
 position = Vector2(839, 293)
 
-[node name="Level_Nr" parent="." index="8"]
-texture = ExtResource("3_12fag")
+[node name="Level_Nr" parent="HUD" index="1"]
+texture = ExtResource("2_12fag")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="8"]
+position = Vector2(364, 416)
+scale = Vector2(3.21429, 2.77273)
+texture = ExtResource("2_smnlx")
+
+[node name="Label" type="Label" parent="Sprite2D" index="0"]
+offset_left = -52.8889
+offset_top = -12.2623
+offset_right = -10.8889
+offset_bottom = 36.7377
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Press
+"

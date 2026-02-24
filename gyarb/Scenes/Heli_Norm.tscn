@@ -5,17 +5,17 @@
 
 [sub_resource type="Curve2D" id="Curve2D_877it"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 277, 485, 0, 0, 0, 0, 0, -355)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 695, -156)
 }
-point_count = 3
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8lrj"]
 size = Vector2(176.25, 18.5)
 
 [sub_resource type="Animation" id="Animation_5o0lt"]
 resource_name = "Heli_Up"
-length = 2.0
-loop_mode = 2
+length = 4.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,10 +23,10 @@ tracks/0/path = NodePath("PathFollow2D:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(-1.55, 1.55),
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(-1.55, 1.55, 1.55),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_s8lrj"]
@@ -63,6 +63,7 @@ metadata/_edit_lock_ = true
 remote_path = NodePath("../../AnimatableBody2D")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(25.8901, -5.8113)
 rotation = -1.5708
 collision_layer = 4
 
@@ -72,6 +73,7 @@ rotation = 1.5708
 texture = ExtResource("1_qj4i5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+visible = false
 position = Vector2(-81, 2)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_s8lrj")

@@ -77,6 +77,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1ehe0"]
 resource_name = "start"
@@ -104,6 +116,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ce3w2"]
 _data = {
@@ -125,8 +149,20 @@ position = Vector2(722, 474)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_48xlc")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 486.0
+offset_top = 291.0
+offset_right = 950.0
+offset_bottom = 388.0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 71
+text = "Realm Ascent"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-z_index = 1
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

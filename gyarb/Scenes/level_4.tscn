@@ -1,11 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://caxnx3sr6ed3q"]
+[gd_scene load_steps=6 format=4 uid="uid://caxnx3sr6ed3q"]
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_i1va2"]
-[ext_resource type="Texture2D" uid="uid://c36dj8gw3x7h6" path="res://Free/Menu/Buttons/K-Button.png" id="2_5eaas"]
+[ext_resource type="Texture2D" uid="uid://cowyb2watmvih" path="res://Free/Menu/Levels/04.png" id="2_kdkq3"]
+[ext_resource type="PackedScene" uid="uid://d3jq43xifwlr" path="res://Scenes/Heli_Norm.tscn" id="3_kdkq3"]
+[ext_resource type="PackedScene" uid="uid://cgddifyi0m1vi" path="res://Scenes/trap_realm.tscn" id="4_wi344"]
+
+[sub_resource type="Curve2D" id="Curve2D_kdkq3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 918, -164)
+}
+point_count = 2
 
 [node name="Level" instance=ExtResource("1_i1va2")]
 
-[node name="K-button" type="Sprite2D" parent="." index="9"]
-position = Vector2(247, 165)
-scale = Vector2(4, 4)
-texture = ExtResource("2_5eaas")
+[node name="TileMapPlay" parent="." index="0"]
+tile_map_data = PackedByteArray("AAAKAAYACQADAAQAAAAJAAIACQAAAAQAAAAKAAIACQACAAQAAAD///3/CQADAAQAAAACAPz/CQAAAAQAAAADAPz/CQABAAQAAAAEAPz/CQABAAQAAAAFAPz/CQAGAAQAAAAFAPv/CQAAAAIAAAAFAPr/CQAAAAEAAAAGAPr/CQAGAAMAAAAGAPn/CQAAAAEAAAAHAPn/CQACAAEAAAAGAPz/CQACAAMAAAAGAPv/CQAFAAIAAAAHAPv/CQACAAMAAAAHAPr/CQACAAIAAAA=")
+
+[node name="TileMapRealm" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAJAAYABAABAAQAAAAIAAYABAABAAQAAAAHAAYABAABAAQAAAAGAAYABAAAAAQAAAAKAAYABAACAAQAAAADAAQABAACAAEAAAACAAQABAABAAEAAAABAAQABAAAAAEAAAABAAUABAAAAAMAAAACAAUABAABAAMAAAADAAUABAACAAMAAAAGAAEABAADAAQAAAAEAP//BAACAAQAAAADAP//BAABAAQAAAACAP//BAAEAAQAAAACAP7/BAADAAEAAAA=")
+
+[node name="Level_Nr" parent="HUD" index="1"]
+texture = ExtResource("2_kdkq3")
+
+[node name="Heli_Norm" parent="." index="8" instance=ExtResource("3_kdkq3")]
+position = Vector2(332, 713)
+curve = SubResource("Curve2D_kdkq3")
+
+[node name="TrapRealm" parent="." index="9" instance=ExtResource("4_wi344")]
+position = Vector2(1021, 583)
+scale = Vector2(2.74, 2.74)

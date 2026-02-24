@@ -33,10 +33,12 @@ func _process(delta: float) -> void:
 
 func switch_to_realm_heli ():
 	heli_norm.visible = false
+	anim.pause()
 
 
 func switch_from_realm_heli ():
 	heli_norm.visible = true
+	anim.play("Heli_Norm")
 
 func switch_realm_heli():
 	if SwitchPosition.normal_realm == true:

@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH = "user://gravityplatformer_savefile.data"
+const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
 
 
 @onready var player: Player = $Player
@@ -43,35 +43,12 @@ func _physics_process(delta: float) -> void:
 		time_label.text = "Time:" + time_string
 
 
-func _finish_game():
-	game_completed = true
-	if name in highscores:
-		if time < highscores[name]:
-			_save_highscore(name)
-	else:
-		_save_highscore(name)
 
-func _get_highscores() -> void:
-	if FileAccess.file_exists(SAVE_PATH):
-		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-		highscores = file.get_var()
-		file.close()
-
-func _save_highscore(level_name: String) -> void:
-	highscores[level_name] = time #Ändrar på värdet om det finns eller lägger till om det inte finns
-	var file = FileAccess.open(SAVE_PATH,FileAccess.WRITE) # finns ej filen skapas den automatiskt
-	file.store_var(highscores)
-	file.close()
-
-func _from_seconds_to_time(seconds: float) -> String:
-	var minu = int(seconds / 60)
-	var sec = int(seconds - minu*60)
-	return "%02d:%02d" % [minu, sec]
 
 func switch_to_realm_block():
 	block.visible = false
 	block_realm.visible = true
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.8).timeout
 	can_switch = true
 
 
@@ -79,7 +56,7 @@ func switch_to_realm_block():
 func switch_from_realm_block():
 	block.visible = true
 	block_realm.visible = false
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.8).timeout
 	can_switch = true
 
 func switch_realm_block():
@@ -116,20 +93,48 @@ func _on_back_level_body_entered(body: Node2D) -> void:
 	
 
 
-
 func _on_last_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player.enter_revive_state()
 
 
 
+
+
+func _finish_game():
+	game_completed = true
+	if name in highscores:
+		if time < highscores[name]:
+			_save_highscore(name)
+	else:
+		_save_highscore(name)
+
+func _get_highscores() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		highscores = file.get_var()
+		file.close()
+
+func _save_highscore(level_name: String) -> void:
+	highscores[level_name] = time #Ändrar på värdet om det finns eller lägger till om det inte finns
+	var file = FileAccess.open(SAVE_PATH,FileAccess.WRITE) # finns ej filen skapas den automatiskt
+	file.store_var(highscores)
+	file.close()
+
+func _from_seconds_to_time(seconds: float) -> String:
+	var minu = int(seconds / 60)
+	var sec = int(seconds - minu*60)
+	return "%02d:%02d" % [minu, sec]
+
+
 func _on_finish_body_entered(body: Node2D) -> void:
 	if body is Player:
 		_finish_game()
 		_get_highscores()
+		"""
 	if name in highscores:
 		var time_string = _from_seconds_to_time(highscores[name])
 		highscore_label.text = "Best: " + time_string
 	else:
 		highscore_label.text = ""
-		
+		"""

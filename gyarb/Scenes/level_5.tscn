@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://0a0pc5rlmwry"]
+
+[ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_wb8gp"]
+[ext_resource type="Texture2D" uid="uid://dmsmsi75n145c" path="res://Free/Menu/Levels/05.png" id="2_hvaeu"]
+
+[node name="Level" instance=ExtResource("1_wb8gp")]
+
+[node name="TileMapPlay" parent="." index="0"]
+tile_map_data = PackedByteArray(0, 0, 6, 0, 5, 0, 9, 0, 0, 0, 4, 0, 0, 0, 7, 0, 5, 0, 9, 0, 1, 0, 4, 0, 0, 0, 8, 0, 5, 0, 9, 0, 2, 0, 4, 0, 0, 0)
+
+[node name="Level_Nr" parent="HUD" index="1"]
+texture = ExtResource("2_hvaeu")

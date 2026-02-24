@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://das8qyusraxkj"]
+[gd_scene load_steps=4 format=3 uid="uid://das8qyusraxkj"]
 
 [ext_resource type="Texture2D" uid="uid://b6nsx6b2av04" path="res://Free/Items/Checkpoints/End/End (Idle).png" id="1_nv66a"]
+[ext_resource type="Script" uid="uid://d38wn8wvqeawp" path="res://Script/finish.gd" id="1_o6pr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6pr6"]
 size = Vector2(31, 35)
 
 [node name="Finish" type="Area2D"]
+script = ExtResource("1_o6pr6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nv66a")

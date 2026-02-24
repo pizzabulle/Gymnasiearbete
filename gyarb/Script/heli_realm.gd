@@ -32,13 +32,21 @@ func _process(delta: float) -> void:
 		path.progress += speed
 
 
-func switch_to_realm_heli ():
-	heli_realm.visible = true
-
-	
 
 func switch_from_realm_heli ():
 	heli_realm.visible = false
+	anim.pause()
+	
+
+
+func switch_to_realm_heli ():
+	heli_realm.visible = true
+	anim.play("Heli_Realm")
+	
+
+	
+
+
 
 func switch_realm_heli ():
 	if SwitchPosition.normal_realm == true:

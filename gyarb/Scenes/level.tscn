@@ -57,9 +57,11 @@ theme_override_font_sizes/font_size = 20
 text = "Time  : mm:ss"
 metadata/_edit_lock_ = true
 
-[node name="HighscoreLabel" type="Label" parent="HUD"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Level_Nr" type="Sprite2D" parent="HUD"]
+position = Vector2(70, 113)
+scale = Vector2(3, 3)
+texture = ExtResource("7_8c0lf")
+metadata/_edit_lock_ = true
 
 [node name="NextLevel" type="Area2D" parent="."]
 visible = false
@@ -95,12 +97,6 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2(-96, 509)
 shape = SubResource("RectangleShape2D_0f350")
-metadata/_edit_lock_ = true
-
-[node name="Level_Nr" type="Sprite2D" parent="."]
-position = Vector2(70, 113)
-scale = Vector2(3, 3)
-texture = ExtResource("7_8c0lf")
 metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]

@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://crw8xq45ma3t8"]
+
+[ext_resource type="Script" uid="uid://kpp4kjhtyx8i" path="res://Script/Highscore.gd" id="1_erjf3"]
+[ext_resource type="Texture2D" uid="uid://da3le7d4hav6u" path="res://Free/Background/Background.png" id="1_p6faf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6faf"]
+bg_color = Color(0.290196, 0.14902, 0.054902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erjf3"]
+bg_color = Color(0.290196, 0.14902, 0.054902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epu05"]
+bg_color = Color(0.290196, 0.14902, 0.054902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dik1"]
+bg_color = Color(0.290196, 0.14902, 0.054902, 1)
+
+[node name="Finish_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_erjf3")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(756, 443)
+scale = Vector2(2.772, 1.919)
+texture = ExtResource("1_p6faf")
+metadata/_edit_lock_ = true
+
+[node name="Highscore1" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -522.0
+offset_top = -181.0
+offset_right = -291.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_constants/separation = 45
+
+[node name="Highscore1" type="Label" parent="Highscore1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6faf")
+text = "Name: mm:ss"
+
+[node name="Highscore3" type="Label" parent="Highscore1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6faf")
+text = "Name: mm:ss"
+
+[node name="Highscore5" type="Label" parent="Highscore1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6faf")
+text = "Name: mm:ss"
+
+[node name="Highscore2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -181.0
+offset_right = 331.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_constants/separation = 45
+
+[node name="Highscore2" type="Label" parent="Highscore2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6faf")
+text = "Name: mm:ss"
+
+[node name="Highscore4" type="Label" parent="Highscore2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6faf")
+text = "Name: mm:ss"
+
+[node name="Highscore6" type="Label" parent="Highscore2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6faf")
+text = "Name: mm:ss"
+
+[node name="Name" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 60.0
+offset_right = 590.0
+offset_bottom = 212.0
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Name"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_erjf3")
+text = "Ange Namn:"
+
+[node name="LineEdit" type="LineEdit" parent="Name"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_epu05")
+
+[node name="Button" type="Button" parent="Name"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_constants/line_spacing = 7
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dik1")
+text = "Enter"
