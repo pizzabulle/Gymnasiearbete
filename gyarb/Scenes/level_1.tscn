@@ -16,6 +16,9 @@ tile_map_data = PackedByteArray("AAAMAAYAAwACAAMAAAALAAYAAwABAAMAAAAKAAYAAwABAAM
 [node name="Player" parent="." index="2"]
 position = Vector2(134, 876)
 
+[node name="BackLevel" parent="." index="6"]
+visible = true
+
 [node name="CollisionShape2D2" parent="Wall" index="0"]
 visible = false
 

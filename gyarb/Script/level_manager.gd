@@ -16,4 +16,4 @@ func change_to_last_level(current_level:int) -> void:
 	if current_level > 1:
 		get_tree().change_scene_to_file(LEVEL_PATH + str(current_level)+ ".tscn")
 	else:
-		get_tree().change_scene_to_file(LEVEL_PATH + str(current_level)+ ".tscn")
+		get_tree().change_scene_to_file("res://Scenes/level_" + str(current_level)+ ".tscn")

@@ -11,6 +11,7 @@ const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
 @onready var change_level: Area2D = $NextLevel
 
 
+var game_start = false
 var can_switch = true
 var time: float = 0.0
 var game_completed : bool = false
@@ -20,6 +21,13 @@ var highscores: Dictionary = {}
 
 
 func _ready() -> void:
+	#Håller koll vilken level man startar på, används inte när spelet startas, räkningen görs när level byts.
+	var path = get_tree().current_scene.scene_file_path
+	var file = path.get_file()       # level_3.tscn
+	var number = file.get_basename() # level_3
+	SwitchPosition.level_nr = int(number.split("_")[1])
+	game_start = true
+#När man byter level sparas x koordinaten så du spawner samma x pos men annan y
 	time = SwitchPosition.saved_time
 	if SwitchPosition.saved_position != Vector2.ZERO:
 		player.global_position.x = SwitchPosition.saved_position.x
@@ -32,8 +40,6 @@ func _ready() -> void:
 		switch_from_realm_block()
 	elif SwitchPosition.normal_realm == false:
 		switch_to_realm_block()
-	
-
 
 func _physics_process(delta: float) -> void:
 	switch_realm_block()

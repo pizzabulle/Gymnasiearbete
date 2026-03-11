@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://caxnx3sr6ed3q"]
+[gd_scene load_steps=5 format=4 uid="uid://caxnx3sr6ed3q"]
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_i1va2"]
 [ext_resource type="Texture2D" uid="uid://cowyb2watmvih" path="res://Free/Menu/Levels/04.png" id="2_kdkq3"]
 [ext_resource type="PackedScene" uid="uid://d3jq43xifwlr" path="res://Scenes/Heli_Norm.tscn" id="3_kdkq3"]
-[ext_resource type="PackedScene" uid="uid://cgddifyi0m1vi" path="res://Scenes/trap_realm.tscn" id="4_wi344"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdkq3"]
 _data = {
@@ -14,7 +13,7 @@ point_count = 2
 [node name="Level" instance=ExtResource("1_i1va2")]
 
 [node name="TileMapPlay" parent="." index="0"]
-tile_map_data = PackedByteArray("AAAKAAYACQADAAQAAAAJAAIACQAAAAQAAAAKAAIACQACAAQAAAD///3/CQADAAQAAAACAPz/CQAAAAQAAAADAPz/CQABAAQAAAAEAPz/CQABAAQAAAAFAPz/CQAGAAQAAAAFAPv/CQAAAAIAAAAFAPr/CQAAAAEAAAAGAPr/CQAGAAMAAAAGAPn/CQAAAAEAAAAHAPn/CQACAAEAAAAGAPz/CQACAAMAAAAGAPv/CQAFAAIAAAAHAPv/CQACAAMAAAAHAPr/CQACAAIAAAA=")
+tile_map_data = PackedByteArray("AAAKAAYACQACAAQAAAAJAAIACQAAAAQAAAAKAAIACQACAAQAAAD///3/CQADAAQAAAACAPz/CQAAAAQAAAADAPz/CQABAAQAAAAEAPz/CQABAAQAAAAFAPz/CQAGAAQAAAAFAPv/CQAAAAIAAAAFAPr/CQAAAAEAAAAGAPr/CQAGAAMAAAAGAPn/CQAAAAEAAAAHAPn/CQACAAEAAAAGAPz/CQACAAMAAAAGAPv/CQAFAAIAAAAHAPv/CQACAAMAAAAHAPr/CQACAAIAAAAJAAYACQABAAQAAAAIAAYACQABAAQAAAAHAAYACQAAAAQAAAA=")
 
 [node name="TileMapRealm" parent="." index="1"]
 tile_map_data = PackedByteArray("AAAJAAYABAABAAQAAAAIAAYABAABAAQAAAAHAAYABAABAAQAAAAGAAYABAAAAAQAAAAKAAYABAACAAQAAAADAAQABAACAAEAAAACAAQABAABAAEAAAABAAQABAAAAAEAAAABAAUABAAAAAMAAAACAAUABAABAAMAAAADAAUABAACAAMAAAAGAAEABAADAAQAAAAEAP//BAACAAQAAAADAP//BAABAAQAAAACAP//BAAEAAQAAAACAP7/BAADAAEAAAA=")
@@ -25,7 +24,3 @@ texture = ExtResource("2_kdkq3")
 [node name="Heli_Norm" parent="." index="8" instance=ExtResource("3_kdkq3")]
 position = Vector2(332, 713)
 curve = SubResource("Curve2D_kdkq3")
-
-[node name="TrapRealm" parent="." index="9" instance=ExtResource("4_wi344")]
-position = Vector2(1021, 583)
-scale = Vector2(2.74, 2.74)
