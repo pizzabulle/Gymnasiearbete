@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://crw8xq45ma3t8"]
+[gd_scene load_steps=4 format=3 uid="uid://crw8xq45ma3t8"]
 
-[ext_resource type="Script" uid="uid://kpp4kjhtyx8i" path="res://Script/Highscore.gd" id="1_erjf3"]
 [ext_resource type="Texture2D" uid="uid://da3le7d4hav6u" path="res://Free/Background/Background.png" id="1_p6faf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6faf"]
@@ -10,13 +9,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erjf3"]
-bg_color = Color(0.290196, 0.14902, 0.054902, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epu05"]
-bg_color = Color(0.290196, 0.14902, 0.054902, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dik1"]
 bg_color = Color(0.290196, 0.14902, 0.054902, 1)
 
 [node name="Finish_Screen" type="Control"]
@@ -26,7 +19,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_erjf3")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -129,22 +121,11 @@ offset_right = 590.0
 offset_bottom = 212.0
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="Name"]
+[node name="Name" type="LineEdit" parent="Name"]
 layout_mode = 2
-theme_override_constants/outline_size = 7
-theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_erjf3")
-text = "Ange Namn:"
-
-[node name="LineEdit" type="LineEdit" parent="Name"]
-layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_epu05")
+placeholder_text = "Enter Name"
+alignment = 1
 
-[node name="Button" type="Button" parent="Name"]
-layout_mode = 2
-theme_override_constants/outline_size = 7
-theme_override_constants/line_spacing = 7
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_5dik1")
-text = "Enter"
+[connection signal="text_submitted" from="Name/Name" to="." method="_on_name_text_submitted"]

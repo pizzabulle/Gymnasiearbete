@@ -2,7 +2,6 @@ extends Node
 
 const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
 
-
 @onready var player: Player = $Player
 @onready var block: TileMapLayer = $TileMapPlay
 @onready var block_realm: TileMapLayer = $TileMapRealm
@@ -10,24 +9,19 @@ const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
 @onready var highscore_label: Label = $HUD/HighscoreLabel
 @onready var change_level: Area2D = $NextLevel
 
-
 var game_start = false
 var can_switch = true
 var time: float = 0.0
-var game_completed : bool = false
-var highscores: Dictionary = {}
-
-
-
+var game_completed: bool = false
+var highscores: Array = []
 
 func _ready() -> void:
-	#Håller koll vilken level man startar på, används inte när spelet startas, räkningen görs när level byts.
 	var path = get_tree().current_scene.scene_file_path
-	var file = path.get_file()       # level_3.tscn
-	var number = file.get_basename() # level_3
+	var file = path.get_file()
+	var number = file.get_basename()
 	SwitchPosition.level_nr = int(number.split("_")[1])
 	game_start = true
-#När man byter level sparas x koordinaten så du spawner samma x pos men annan y
+
 	time = SwitchPosition.saved_time
 	if SwitchPosition.saved_position != Vector2.ZERO:
 		player.global_position.x = SwitchPosition.saved_position.x
@@ -41,23 +35,20 @@ func _ready() -> void:
 	elif SwitchPosition.normal_realm == false:
 		switch_to_realm_block()
 
+	_load_highscores()
+
 func _physics_process(delta: float) -> void:
 	switch_realm_block()
 	if not game_completed:
 		time += delta
 		var time_string = _from_seconds_to_time(time)
-		time_label.text = "Time:" + time_string
-
-
-
+		time_label.text = "Time: " + time_string
 
 func switch_to_realm_block():
 	block.visible = false
 	block_realm.visible = true
 	await get_tree().create_timer(0.8).timeout
 	can_switch = true
-
-
 
 func switch_from_realm_block():
 	block.visible = true
@@ -69,7 +60,6 @@ func switch_realm_block():
 	if Input.is_action_just_pressed("switch") and can_switch:
 		can_switch = false
 		SwitchPosition.emit_signal("realm_changed")
-		
 		if SwitchPosition.normal_realm == true:
 			switch_to_realm_block()
 			SwitchPosition.normal_realm = false
@@ -77,17 +67,12 @@ func switch_realm_block():
 			switch_from_realm_block()
 			SwitchPosition.normal_realm = true
 
-
 func _on_next_level_body_entered(body: Node2D) -> void:
-	if body is Player: 
-		SwitchPosition.level_nr +=1
+	if body is Player:
+		SwitchPosition.level_nr += 1
 		SwitchPosition.saved_time = time
 		LevelManager.change_to_next_level(SwitchPosition.level_nr)
 		SwitchPosition.saved_position = player.global_position
-
-	
-
-
 
 func _on_back_level_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -96,51 +81,59 @@ func _on_back_level_body_entered(body: Node2D) -> void:
 		LevelManager.change_to_last_level(SwitchPosition.level_nr)
 		SwitchPosition.saved_position = player.global_position
 
-	
-
-
 func _on_last_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player.enter_revive_state()
 
+func _on_finish_body_entered(body: Node2D) -> void:
+	if body is Player and not game_completed:
+		game_completed = true
+		_load_highscores()
+		_show_finish_screen()
 
-
-
-
-func _finish_game():
-	game_completed = true
-	if name in highscores:
-		if time < highscores[name]:
-			_save_highscore(name)
-	else:
-		_save_highscore(name)
-
-func _get_highscores() -> void:
+func _load_highscores() -> void:
+	highscores = []
 	if FileAccess.file_exists(SAVE_PATH):
 		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-		highscores = file.get_var()
+		var text = file.get_as_text()
 		file.close()
+		var data = JSON.parse_string(text)
+		if data is Array:
+			highscores = data
 
-func _save_highscore(level_name: String) -> void:
-	highscores[level_name] = time #Ändrar på värdet om det finns eller lägger till om det inte finns
-	var file = FileAccess.open(SAVE_PATH,FileAccess.WRITE) # finns ej filen skapas den automatiskt
-	file.store_var(highscores)
+func _save_highscores() -> void:
+	DirAccess.make_dir_recursive_absolute("res://HighScores")
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file == null:
+		return
+	file.store_string(JSON.stringify(highscores))
 	file.close()
+
+func _qualifies_for_top8() -> bool:
+	if highscores.size() < 8:
+		return true
+	return time < highscores[highscores.size() - 1]["time"]
+
+func _insert_score(player_name: String) -> void:
+	for i in range(highscores.size() - 1, -1, -1):
+		if highscores[i]["name"] == player_name:
+			highscores.remove_at(i)
+	highscores.append({"name": player_name, "time": time})
+	highscores.sort_custom(func(a, b): return a["time"] < b["time"])
+	if highscores.size() > 8:
+		highscores.resize(8)
+	_save_highscores()
+
+func _show_finish_screen() -> void:
+	var finish_scene = preload("res://Scenes/FinishScreen.tscn").instantiate()
+	finish_scene.setup(time, highscores, _qualifies_for_top8())
+	finish_scene.connect("score_submitted", _on_score_submitted)
+	add_child(finish_scene)
+
+func _on_score_submitted(player_name: String) -> void:
+	_insert_score(player_name)
 
 func _from_seconds_to_time(seconds: float) -> String:
 	var minu = int(seconds / 60)
-	var sec = int(seconds - minu*60)
+	var sec = int(seconds - minu * 60)
 	return "%02d:%02d" % [minu, sec]
-
-
-func _on_finish_body_entered(body: Node2D) -> void:
-	if body is Player:
-		_finish_game()
-		_get_highscores()
-		"""
-	if name in highscores:
-		var time_string = _from_seconds_to_time(highscores[name])
-		highscore_label.text = "Best: " + time_string
-	else:
-		highscore_label.text = ""
-		"""
