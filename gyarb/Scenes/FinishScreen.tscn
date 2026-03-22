@@ -82,5 +82,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 15
 text = "Main menu"
 
+[connection signal="pressed" from="Panel/VBox/NameRow/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="Panel/VBox/Buttons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Panel/VBox/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

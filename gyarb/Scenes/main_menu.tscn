@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtg0l0ye813af"]
+[gd_scene load_steps=13 format=3 uid="uid://dtg0l0ye813af"]
 
 [ext_resource type="Script" uid="uid://bwa3wrs3flxvm" path="res://Script/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://b45bdqxeypljh" path="res://Free/Background/Skärmavbild 2026-01-27 kl. 19.56.32.png" id="2_48xlc"]
+[ext_resource type="FontFile" uid="uid://bf2x16hakilg4" path="res://Free/Menu/Text/Boxy-Bold.ttf" id="3_1ehe0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28flt"]
 
@@ -89,6 +90,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.333333)]
+}
 
 [sub_resource type="Animation" id="Animation_1ehe0"]
 resource_name = "start"
@@ -128,6 +141,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.333333), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ce3w2"]
 _data = {
@@ -144,21 +169,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_48xlc")
 
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.333333)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1838.0
+offset_top = -993.0
+offset_right = -1838.0
+offset_bottom = -993.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.78, 3.78)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(722, 474)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_48xlc")
 
 [node name="Label" type="Label" parent="."]
+z_index = 8
 layout_mode = 2
-offset_left = 486.0
-offset_top = 291.0
-offset_right = 950.0
-offset_bottom = 388.0
+offset_left = 305.0
+offset_top = 299.0
+offset_right = 1336.0
+offset_bottom = 424.0
 size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 71
+theme_override_fonts/font = ExtResource("3_1ehe0")
+theme_override_font_sizes/font_size = 110
 text = "Realm Ascent"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 func _on_start_pressed() -> void:
 	anim.play("start")
 	await anim.animation_finished
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
 
 func _on_quit_2_pressed() -> void:

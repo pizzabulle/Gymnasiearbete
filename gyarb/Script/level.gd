@@ -115,9 +115,6 @@ func _qualifies_for_top8() -> bool:
 	return time < highscores[highscores.size() - 1]["time"]
 
 func _insert_score(player_name: String) -> void:
-	for i in range(highscores.size() - 1, -1, -1):
-		if highscores[i]["name"] == player_name:
-			highscores.remove_at(i)
 	highscores.append({"name": player_name, "time": time})
 	highscores.sort_custom(func(a, b): return a["time"] < b["time"])
 	if highscores.size() > 8:
@@ -126,9 +123,9 @@ func _insert_score(player_name: String) -> void:
 
 func _show_finish_screen() -> void:
 	var finish_scene = preload("res://Scenes/FinishScreen.tscn").instantiate()
-	finish_scene.setup(time, highscores, _qualifies_for_top8())
 	finish_scene.connect("score_submitted", _on_score_submitted)
 	add_child(finish_scene)
+	finish_scene.setup(time, highscores, _qualifies_for_top8())
 
 func _on_score_submitted(player_name: String) -> void:
 	_insert_score(player_name)

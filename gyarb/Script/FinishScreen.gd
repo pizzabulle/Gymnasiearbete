@@ -15,21 +15,21 @@ var _scores: Array = []
 var _qualifies: bool = false
 var _submitted: bool = false
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
+	submit_btn.pressed.connect(_on_submit)
+	name_input.text_submitted.connect(func(_t): _on_submit())
+
 func setup(finish_time: float, scores: Array, qualifies: bool) -> void:
 	_time = finish_time
 	_scores = scores
 	_qualifies = qualifies
-
-func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	get_tree().paused = true
+	print("setup tid: ", _time)
+	print("your_time_label: ", your_time_label)
 	your_time_label.text = "Din tid: " + _fmt(_time)
 	qualify_row.visible = _qualifies
 	_fill_slots()
-	submit_btn.pressed.connect(_on_submit)
-	name_input.text_submitted.connect(func(_t): _on_submit())
-	restart_btn.pressed.connect(_on_restart_button_pressed)
-	menu_btn.pressed.connect(_on_menu_button_pressed)
 
 func _fill_slots(highlight: String = "") -> void:
 	for c in slots.get_children():
@@ -58,6 +58,7 @@ func _fill_slots(highlight: String = "") -> void:
 		row.add_child(name_lbl)
 		row.add_child(time_lbl)
 		slots.add_child(row)
+
 
 func _on_submit() -> void:
 	if _submitted:

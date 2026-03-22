@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://caxnx3sr6ed3q"]
+[gd_scene load_steps=6 format=4 uid="uid://caxnx3sr6ed3q"]
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_i1va2"]
 [ext_resource type="Texture2D" uid="uid://cowyb2watmvih" path="res://Free/Menu/Levels/04.png" id="2_kdkq3"]
 [ext_resource type="PackedScene" uid="uid://d3jq43xifwlr" path="res://Scenes/Heli_Norm.tscn" id="3_kdkq3"]
+[ext_resource type="PackedScene" uid="uid://o0c61ntjcmee" path="res://Scenes/trap_norm.tscn" id="4_wi344"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdkq3"]
 _data = {
@@ -24,3 +25,6 @@ texture = ExtResource("2_kdkq3")
 [node name="Heli_Norm" parent="." index="8" instance=ExtResource("3_kdkq3")]
 position = Vector2(332, 713)
 curve = SubResource("Curve2D_kdkq3")
+
+[node name="TrapNorm" parent="." index="10" instance=ExtResource("4_wi344")]
+position = Vector2(880, 246)

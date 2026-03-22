@@ -15,5 +15,8 @@ tile_map_data = PackedByteArray("AAAEAAYAAwABAAMAAAADAAYAAwABAAMAAAACAAYAAwAAAAM
 [node name="Level_Nr" parent="HUD" index="1"]
 texture = ExtResource("2_g5cw1")
 
+[node name="Wall" parent="." index="7"]
+visible = true
+
 [node name="TrapNorm" parent="." index="8" instance=ExtResource("3_76ybr")]
 position = Vector2(714, 636)

@@ -103,6 +103,7 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_754fn")]
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]
 [connection signal="body_entered" from="BackLevel" to="." method="_on_back_level_body_entered"]
