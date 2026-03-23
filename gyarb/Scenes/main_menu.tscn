@@ -1,57 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtg0l0ye813af"]
+[gd_scene load_steps=7 format=3 uid="uid://dtg0l0ye813af"]
 
 [ext_resource type="Script" uid="uid://bwa3wrs3flxvm" path="res://Script/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://b45bdqxeypljh" path="res://Free/Background/Skärmavbild 2026-01-27 kl. 19.56.32.png" id="2_48xlc"]
 [ext_resource type="FontFile" uid="uid://bf2x16hakilg4" path="res://Free/Menu/Text/Boxy-Bold.ttf" id="3_1ehe0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28flt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-shadow_color = Color(0.388782, 0.703086, 0.83604, 0.6)
-shadow_size = 3
-shadow_offset = Vector2(0, 3.41)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-shadow_color = Color(0.388782, 0.703086, 0.83604, 0.6)
-shadow_size = 3
-shadow_offset = Vector2(0, 3.41)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
-bg_color = Color(0.231373, 0.584314, 0.756863, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-shadow_color = Color(0.388782, 0.703086, 0.83604, 0.6)
-shadow_size = 3
-shadow_offset = Vector2(0, 3.41)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
-bg_color = Color(0.231373, 0.584314, 0.756863, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-shadow_color = Color(0.388782, 0.703086, 0.83604, 0.6)
-shadow_size = 3
-shadow_offset = Vector2(0, 3.41)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erv1k"]
-bg_color = Color(0.292137, 0.147327, 0.0563771, 1)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
 
 [sub_resource type="Animation" id="Animation_48xlc"]
 tracks/0/type = "value"
@@ -219,39 +170,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 13
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.766636, 0.701816, 0.593078, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_28flt")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_48xlc")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_1ehe0")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_erv1k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
-text = "Start Game"
+theme_override_font_sizes/font_size = 35
+text = "Start game"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="leaderboard" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.766636, 0.701816, 0.593078, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_28flt")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_48xlc")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_1ehe0")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_erv1k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
-text = "Quit
-"
+theme_override_font_sizes/font_size = 34
+text = "Leaderboard"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Quit Game"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ce3w2")
 }
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_quit_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

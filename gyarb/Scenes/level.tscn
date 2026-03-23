@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://bf2x16hakilg4" path="res://Free/Menu/Text/Boxy-Bold.ttf" id="6_0f350"]
 [ext_resource type="Texture2D" uid="uid://da3le7d4hav6u" path="res://Free/Background/Background.png" id="6_qxfql"]
 [ext_resource type="Texture2D" uid="uid://ckh24ge4j62ho" path="res://Free/Menu/Levels/01.png" id="7_8c0lf"]
-[ext_resource type="PackedScene" uid="uid://kppopyy7rqu3" path="res://Scenes/pause_menu.tscn" id="8_754fn"]
+[ext_resource type="PackedScene" uid="uid://dvy5huvj0b4hx" path="res://Scenes/PauseMenu.tscn" id="9_bvt00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqkje"]
 size = Vector2(2213, 111.5)
@@ -102,8 +102,7 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_754fn")]
-metadata/_edit_lock_ = true
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_bvt00")]
 
 [connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]
 [connection signal="body_entered" from="BackLevel" to="." method="_on_back_level_body_entered"]
