@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=4 uid="uid://y3gp4f6mfs36"]
+
+[ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_i87cx"]
+[ext_resource type="Texture2D" uid="uid://dabh3mvtpkkvu" path="res://Free/Menu/Levels/07.png" id="2_i3ob1"]
+[ext_resource type="PackedScene" uid="uid://o0c61ntjcmee" path="res://Scenes/trap_norm.tscn" id="3_3fthp"]
+[ext_resource type="PackedScene" uid="uid://d3jq43xifwlr" path="res://Scenes/Heli_Norm.tscn" id="4_hewxp"]
+
+[node name="Level" instance=ExtResource("1_i87cx")]
+
+[node name="TileMapPlay" parent="." index="0"]
+tile_map_data = PackedByteArray("AAAHAAYACAAAAAQAAAAIAAYACAABAAQAAAAJAAYACAABAAQAAAAKAAYACAACAAQAAAAHAAQACAAEAAQAAAAHAAMACAAHAAEAAAAFAAMACAAEAAQAAAAEAAIACAAEAAQAAAAFAAIACAAHAAEAAAD//wAACAABAAQAAAD+/wAACAABAAQAAAD9/wAACAAAAAQAAAABAAAACAACAAQAAAAAAAAACAABAAQAAAD8//7/CAAHAAUAAAD8////CAADAAMAAAD7//7/CAAAAAQAAAD///3/CAAAAAQAAAAAAP3/CAABAAQAAAABAP3/CAACAAQAAAAJAAIACAADAAMAAAAJAAEACAADAAIAAAAJAAAACAADAAIAAAAJAP//CAADAAIAAAAJAP7/CAADAAIAAAAJAP3/CAADAAIAAAAJAPz/CAADAAIAAAAJAPv/CAADAAIAAAAJAPr/CAADAAIAAAAJAPn/CAADAAEAAAAGAAMACAABAAQAAAAIAAQACAACAAQAAAA=")
+
+[node name="TileMapRealm" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD3/wYABQAAAAQAAAD4/wYABQABAAQAAAD5/wYABQABAAQAAAD6/wYABQABAAQAAAD7/wYABQABAAQAAAD8/wYABQACAAQAAAD+/wQABQAAAAQAAAD//wQABQAHAAQAAAD//wMABQAEAAEAAAAAAAMABQABAAQAAAABAAMABQACAAQAAAAAAP3/BQABAAQAAAD///3/BQAAAAQAAAABAP3/BQACAAQAAAAEAPz/BQAAAAEAAAAGAPz/BQACAAEAAAAFAPz/BQABAAEAAAAFAP3/BQABAAMAAAAEAP3/BQAAAAMAAAAGAP3/BQACAAMAAAA=")
+
+[node name="Level_Nr" parent="HUD" index="1"]
+texture = ExtResource("2_i3ob1")
+
+[node name="TrapNorm" parent="." index="9" instance=ExtResource("3_3fthp")]
+position = Vector2(513, 503)
+
+[node name="Heli_Norm" parent="." index="10" instance=ExtResource("4_hewxp")]
+position = Vector2(-171, -2)
+
+[node name="TrapNorm2" parent="." index="11" instance=ExtResource("3_3fthp")]
+position = Vector2(1160, 536)
+
+[node name="TrapNorm3" parent="." index="12" instance=ExtResource("3_3fthp")]
+position = Vector2(1100, 537)
+
+[node name="TrapNorm4" parent="." index="13" instance=ExtResource("3_3fthp")]
+position = Vector2(1292, 691)
+
+[node name="TrapNorm5" parent="." index="14" instance=ExtResource("3_3fthp")]
+position = Vector2(1357, 689)
+
+[node name="TrapNorm6" parent="." index="15" instance=ExtResource("3_3fthp")]
+position = Vector2(1405, 689)

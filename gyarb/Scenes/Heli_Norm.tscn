@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_877it"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 695, -156)
+"points": PackedVector2Array(0, 0, 0, 0, 2025.33, 885.333, 0, 0, 0, 0, 2024, -10.6667)
 }
 point_count = 2
 
@@ -51,6 +51,7 @@ _data = {
 }
 
 [node name="Heli_Norm" type="Path2D"]
+scale = Vector2(0.75, 0.75)
 curve = SubResource("Curve2D_877it")
 script = ExtResource("1_g8jso")
 
@@ -63,7 +64,6 @@ metadata/_edit_lock_ = true
 remote_path = NodePath("../../AnimatableBody2D")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-position = Vector2(25.8901, -5.8113)
 rotation = -1.5708
 collision_layer = 4
 

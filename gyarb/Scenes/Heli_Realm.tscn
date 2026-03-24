@@ -9,7 +9,7 @@ size = Vector2(176.25, 18.5)
 
 [sub_resource type="Animation" id="Animation_5o0lt"]
 resource_name = "Heli_Up"
-length = 4.0
+length = 8.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,7 +18,7 @@ tracks/0/path = NodePath("PathFollow2D:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
+"times": PackedFloat32Array(0, 4, 8),
 "transitions": PackedFloat32Array(-1.55, 1.55, 1.55),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
@@ -46,10 +46,12 @@ _data = {
 }
 
 [node name="Heli_Realm" type="Path2D"]
+scale = Vector2(0.75, 0.75)
 curve = ExtResource("1_vgwhu")
 script = ExtResource("2_qmole")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(97.3333, 1148)
 rotation = -1.5708
 rotates = false
 
@@ -57,7 +59,7 @@ rotates = false
 remote_path = NodePath("../../AnimatableBody2D")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-position = Vector2(0.276358, -156.972)
+position = Vector2(97.3333, 1148)
 rotation = -1.5708
 collision_layer = 8
 collision_mask = 2

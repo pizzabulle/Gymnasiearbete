@@ -8,6 +8,7 @@ const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
 @onready var time_label: Label = $HUD/TimeLabel
 @onready var highscore_label: Label = $HUD/HighscoreLabel
 @onready var change_level: Area2D = $NextLevel
+@onready var start_pos: Marker2D = $Marker2D
 
 var game_start = false
 var can_switch = true
@@ -21,6 +22,7 @@ func _ready() -> void:
 	var number = file.get_basename()
 	SwitchPosition.level_nr = int(number.split("_")[1])
 	game_start = true
+	SwitchPosition.start_pos = start_pos.position
 
 	time = SwitchPosition.saved_time
 	if SwitchPosition.saved_position != Vector2.ZERO:
@@ -36,6 +38,9 @@ func _ready() -> void:
 		switch_to_realm_block()
 
 	_load_highscores()
+	##################
+	#block.visible = true
+	#block_realm.visible = true
 
 func _physics_process(delta: float) -> void:
 	switch_realm_block()

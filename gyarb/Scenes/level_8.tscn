@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=4 uid="uid://p07agm7d7yem"]
+
+[ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_w8c7v"]
+[ext_resource type="Texture2D" uid="uid://d2imh8e3tboo1" path="res://Free/Menu/Levels/50.png" id="2_eowa8"]
+[ext_resource type="PackedScene" uid="uid://das8qyusraxkj" path="res://Scenes/finish_line.tscn" id="3_u4qav"]
+[ext_resource type="PackedScene" uid="uid://cgddifyi0m1vi" path="res://Scenes/trap_realm.tscn" id="4_eowa8"]
+
+[node name="Level" instance=ExtResource("1_w8c7v")]
+
+[node name="TileMapPlay" parent="." index="0"]
+tile_map_data = PackedByteArray("AAAKAPv/BwABAAMAAAALAPv/BwABAAMAAAAMAPv/BwACAAMAAAAIAPv/BwAAAAMAAAAJAPv/BwABAAMAAAAEAP3/CAAAAAQAAAAFAP3/CAABAAQAAAAGAP3/CAACAAQAAAD8/wQACAAAAAQAAAD9/wQACAACAAQAAAD+/wUACAAAAAQAAAD//wUACAACAAQAAAAAAAYACAAAAAQAAAABAAYACAABAAQAAAACAAYACAACAAQAAAALAAYACAACAAQAAAAKAAYACAABAAQAAAAJAAYACAABAAQAAAAIAAYACAAAAAQAAAAFAAUACAADAAQAAAA=")
+
+[node name="TileMapRealm" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAEAP//BQAAAAQAAAAFAP//BQABAAQAAAAGAP//BQACAAQAAAD7/wIABQACAAQAAAD6/wIABQAEAAEAAAD6/wMABQAHAAQAAAD5/wMABQAAAAQAAAD+/wEABQAAAAQAAAD//wEABQACAAQAAAACAAEABQADAAQAAAA=")
+
+[node name="Player" parent="." index="2"]
+position = Vector2(961, 232)
+
+[node name="Level_Nr" parent="HUD" index="1"]
+texture = ExtResource("2_eowa8")
+
+[node name="PauseMenu" parent="CanvasLayer" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="Finish" parent="." index="9" instance=ExtResource("3_u4qav")]
+position = Vector2(1346, 153)
+scale = Vector2(2, 2)
+
+[node name="TrapRealm" parent="." index="10" instance=ExtResource("4_eowa8")]
+position = Vector2(765, 584)
+scale = Vector2(3, 3)

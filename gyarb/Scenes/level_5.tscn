@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://0a0pc5rlmwry"]
+[gd_scene load_steps=4 format=4 uid="uid://0a0pc5rlmwry"]
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_wb8gp"]
 [ext_resource type="Texture2D" uid="uid://dmsmsi75n145c" path="res://Free/Menu/Levels/05.png" id="2_hvaeu"]
+[ext_resource type="PackedScene" uid="uid://cgddifyi0m1vi" path="res://Scenes/trap_realm.tscn" id="3_ihmlp"]
 
 [node name="Level" instance=ExtResource("1_wb8gp")]
 
 [node name="TileMapPlay" parent="." index="0"]
-tile_map_data = PackedByteArray(0, 0, 6, 0, 5, 0, 9, 0, 0, 0, 4, 0, 0, 0, 7, 0, 5, 0, 9, 0, 1, 0, 4, 0, 0, 0, 8, 0, 5, 0, 9, 0, 2, 0, 4, 0, 0, 0)
+tile_map_data = PackedByteArray("AAAGAAUACQAAAAQAAAAHAAUACQABAAQAAAAIAAUACQACAAQAAAAJAAQACQAAAAQAAAAKAAQACQABAAQAAAALAAQACQAHAAQAAAALAAMACQAEAAEAAAAMAAMACQACAAQAAAA=")
+
+[node name="TileMapRealm" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAIAAEABQACAAQAAAAHAAEABQABAAQAAAAGAAEABQAAAAQAAAADAAEABQACAAQAAAACAAEABQABAAQAAAABAAEABQABAAQAAAAAAAEABQABAAQAAAD//wEABQAAAAQAAAD+/wAABQADAAMAAAD+////BQAHAAEAAAD9////BQAEAAQAAAD9//7/BQAHAAEAAAD8//7/BQAEAAQAAAD8//3/BQAHAAEAAAD7//3/BQAAAAQAAAD4//v/BQADAAQAAAD7//n/BQAAAAQAAAD8//n/BQABAAQAAAD9//n/BQABAAQAAAD+//n/BQABAAQAAAD///n/BQABAAQAAAAAAPn/BQABAAQAAAABAPn/BQABAAQAAAACAPn/BQACAAQAAAA=")
 
 [node name="Level_Nr" parent="HUD" index="1"]
 texture = ExtResource("2_hvaeu")
+
+[node name="TrapRealm" parent="." index="9" instance=ExtResource("3_ihmlp")]
+position = Vector2(776, 572)
+
+[node name="TrapRealm2" parent="." index="10" instance=ExtResource("3_ihmlp")]
+position = Vector2(643, 572)

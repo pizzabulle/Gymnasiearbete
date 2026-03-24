@@ -19,4 +19,4 @@ texture = ExtResource("2_g5cw1")
 visible = true
 
 [node name="TrapNorm" parent="." index="8" instance=ExtResource("3_76ybr")]
-position = Vector2(714, 636)
+position = Vector2(626, 572)
