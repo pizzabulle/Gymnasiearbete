@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://c8qwb6o1tb8sf"]
+[gd_scene load_steps=7 format=4 uid="uid://c8qwb6o1tb8sf"]
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_fj5rg"]
 [ext_resource type="Texture2D" uid="uid://7bt5kj8d0m0r" path="res://Free/Menu/Levels/06.png" id="2_yb6aw"]
 [ext_resource type="PackedScene" uid="uid://bt0vix575fl2l" path="res://Scenes/Heli_Realm.tscn" id="3_67u3v"]
 [ext_resource type="PackedScene" uid="uid://o0c61ntjcmee" path="res://Scenes/trap_norm.tscn" id="4_67u3v"]
+[ext_resource type="Texture2D" uid="uid://c36dj8gw3x7h6" path="res://Free/Menu/Buttons/K-Button.png" id="5_helb0"]
 
 [sub_resource type="Curve2D" id="Curve2D_yb6aw"]
 _data = {
@@ -14,10 +15,10 @@ point_count = 2
 [node name="Level" instance=ExtResource("1_fj5rg")]
 
 [node name="TileMapPlay" parent="." index="0"]
-tile_map_data = PackedByteArray("AAADAAQACAABAAQAAAAEAAQACAACAAQAAAACAAQACAAAAAQAAAAIAAMACAAAAAQAAAAJAAMACAABAAQAAAAKAAMACAAHAAQAAAAKAAIACAADAAEAAAAKAAEACAADAAEAAAAGAAAACAACAAQAAAAFAAAACAABAAQAAAAEAAAACAAFAAQAAAADAAAACAAAAAMAAAADAP//CAAAAAEAAAAEAP//CAACAAEAAAAAAPz/CAABAAQAAAD///z/CAAAAAQAAAD/////CAAAAAQAAAAAAP//CAACAAQAAAABAPz/CAACAAQAAAD8//7/CAACAAQAAAD7//7/CAAAAAQAAAAAAAIACAACAAQAAAD//wIACAABAAQAAAD+/wIACAAAAAQAAAAEAPv/CAAAAAQAAAAFAPv/CAABAAQAAAAGAPv/CAACAAQAAAAHAPr/CAAAAAQAAAAIAPr/CAAHAAQAAAAIAPj/CAADAAEAAAAIAPn/CAADAAIAAAD+/wYACAAAAAQAAAD//wYACAABAAQAAAAAAAYACAABAAQAAAABAAYACAACAAQAAAA=")
+tile_map_data = PackedByteArray("AAADAAQACQABAAQAAAAEAAQACQACAAQAAAACAAQACQAAAAQAAAAIAAMACQAAAAQAAAAJAAMACQABAAQAAAAKAAMACQAHAAQAAAAKAAIACQADAAIAAAAKAAEACQADAAEAAAAGAAAACQACAAQAAAAFAAAACQABAAQAAAAEAAAACQAFAAQAAAADAAAACQAAAAMAAAADAP//CQAAAAEAAAAEAP//CQACAAEAAAAAAPz/CAABAAQAAAD///z/CAAAAAQAAAD/////CAAAAAQAAAAAAP//CAACAAQAAAABAPz/CAACAAQAAAD8//7/CAACAAQAAAD7//7/CAAAAAQAAAAAAAIACQACAAQAAAD//wIACQABAAQAAAD+/wIACQAAAAQAAAAEAPv/CAAAAAQAAAAFAPv/CAABAAQAAAAGAPv/CAACAAQAAAAHAPr/CAAAAAQAAAAIAPr/CAAHAAQAAAAIAPj/CAADAAEAAAAIAPn/CAADAAIAAAD+/wYACQAAAAQAAAD//wYACQABAAQAAAAAAAYACQABAAQAAAABAAYACQACAAQAAAA=")
 
 [node name="TileMapRealm" parent="." index="1"]
-tile_map_data = PackedByteArray("AAD6/wUABQABAAQAAAD5/wUABQAAAAQAAAABAAYABQACAAQAAAAAAAYABQABAAQAAAD//wYABQABAAQAAAD+/wYABQAAAAQAAAD7/wUABQACAAQAAAA=")
+tile_map_data = PackedByteArray("AAD6/wUABAABAAQAAAD5/wUABAAAAAQAAAABAAYABAACAAQAAAAAAAYABAABAAQAAAD//wYABAABAAQAAAD+/wYABAAAAAQAAAD7/wUABAACAAQAAAA=")
 
 [node name="Player" parent="." index="2"]
 position = Vector2(83, 125)
@@ -44,3 +45,17 @@ position = Vector2(1001, 511)
 
 [node name="TrapNorm4" parent="." index="13" instance=ExtResource("4_67u3v")]
 position = Vector2(844, 765)
+
+[node name="Label" type="Label" parent="." index="16"]
+offset_left = 143.0
+offset_top = 561.0
+offset_right = 451.0
+offset_bottom = 632.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "Slow or press "
+
+[node name="Sprite2D" type="Sprite2D" parent="Label" index="0"]
+position = Vector2(344, 42)
+scale = Vector2(3.40476, 2.81818)
+texture = ExtResource("5_helb0")

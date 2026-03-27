@@ -1,6 +1,6 @@
 extends Control
 
-const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
+const SAVE_PATH = "res://HighScores/Highscores_savefile.dat"
 
 @onready var slots: VBoxContainer = $Panel/VBox/Slots
 
@@ -8,7 +8,7 @@ const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
 func _ready() -> void:
 	var highscores = []
 	if FileAccess.file_exists(SAVE_PATH):
-		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, "G%8vM7Ln")
 		var data = JSON.parse_string(file.get_as_text())
 		file.close()
 		if data is Array:

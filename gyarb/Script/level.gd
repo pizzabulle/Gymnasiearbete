@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH = "res://HighScores/Highscores_savefile.txt"
+const SAVE_PATH = "res://HighScores/Highscores_savefile.dat"
 
 @onready var player: Player = $Player
 @onready var block: TileMapLayer = $TileMapPlay
@@ -15,6 +15,7 @@ var can_switch = true
 var time: float = 0.0
 var game_completed: bool = false
 var highscores: Array = []
+
 
 func _ready() -> void:
 	var path = get_tree().current_scene.scene_file_path
@@ -36,12 +37,7 @@ func _ready() -> void:
 		switch_from_realm_block()
 	elif SwitchPosition.normal_realm == false:
 		switch_to_realm_block()
-
 	_load_highscores()
-	##################
-	#block.visible = true
-	#block_realm.visible = true
-
 func _physics_process(delta: float) -> void:
 	switch_realm_block()
 	if not game_completed:
@@ -96,19 +92,27 @@ func _on_finish_body_entered(body: Node2D) -> void:
 		_load_highscores()
 		_show_finish_screen()
 
+
+################Time##############
 func _load_highscores() -> void:
 	highscores = []
+	print("fil finns: ", FileAccess.file_exists(SAVE_PATH))
+	print("sökväg: ", SAVE_PATH)
 	if FileAccess.file_exists(SAVE_PATH):
-		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, "G%8vM7Ln")
+		if file == null:
+			print("kunde inte öppna filen")
+			return
 		var text = file.get_as_text()
 		file.close()
 		var data = JSON.parse_string(text)
+		print("data: ", data)
 		if data is Array:
 			highscores = data
 
 func _save_highscores() -> void:
 	DirAccess.make_dir_recursive_absolute("res://HighScores")
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.WRITE,"G%8vM7Ln")
 	if file == null:
 		return
 	file.store_string(JSON.stringify(highscores))

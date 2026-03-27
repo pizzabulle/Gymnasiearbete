@@ -6,9 +6,9 @@ uniform float darken : hint_range(0.0, 1.0) = 0.3;
 
 void fragment() {
     vec4 color = textureLod(screen_texture, SCREEN_UV, blur_strength);
-    
+
     // darken background slightly for pause effect
     color.rgb *= (1.0 - darken);
-    
+
     COLOR = color;
 }

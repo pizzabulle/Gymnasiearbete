@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cymn1638ckd2m"]
+[gd_scene load_steps=3 format=3 uid="uid://cymn1638ckd2m"]
 
 [ext_resource type="Script" uid="uid://c23rudt5mfoss" path="res://Script/leaderboard.gd" id="1_oxn4a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oxn4a"]
 
 [node name="FinishScreen" type="Control"]
 process_mode = 3
@@ -61,6 +63,8 @@ theme_override_constants/separation = 8
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oxn4a")
+action_mode = 0
 text = "Main menu"
 
 [connection signal="pressed" from="Panel/VBox/Buttons/menu" to="." method="_on_menu_pressed"]

@@ -191,7 +191,7 @@ func _enter_air_state(jumping: bool):
 	anim_player_realm.play("Air")
 
 	if jumping:
-		velocity += up_direction * JUMP_VELOCITY
+		velocity = up_direction * JUMP_VELOCITY
 
 
 func enter_dead_state(dir: Vector2) -> void:
