@@ -28,10 +28,10 @@ func _ready() -> void: # öpnar leaderboard stats och  lägger in alla som finns
 		row.add_child(time_lbl)
 		slots.add_child(row)
 
-func _on_menu_pressed() -> void:
+func _on_menu_pressed() -> void: # byter tillbaka til main menu
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
-func _fmt(s: float) -> String:
+func _fmt(s: float) -> String: # Tar tiden i sek och gör till minut och sek
 	var m: int = int(s / 60)
 	var sec: int = int(s) - m * 60
 	return "%02d:%02d" % [m, sec]

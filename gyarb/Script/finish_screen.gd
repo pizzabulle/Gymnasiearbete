@@ -15,13 +15,13 @@ var _scores: Array = []
 var _qualifies: bool = false
 var _submitted: bool = false
 
-func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+func _ready() -> void: 
+	process_mode = Node.PROCESS_MODE_ALWAYS # Även fast spelet är pausat ska knapparna fungera
 	get_tree().paused = true
 	submit_btn.pressed.connect(_on_submit)
 	name_input.text_submitted.connect(func(_t): _on_submit())
 
-func setup(finish_time: float, scores: Array, qualifies: bool) -> void:
+func setup(finish_time: float, scores: Array, qualifies: bool) -> void: # Tar in datan om tiden och om den är i top 8
 	_time = finish_time
 	_scores = scores
 	_qualifies = qualifies
@@ -58,7 +58,7 @@ func _fill_slots(highlight: String = "") -> void: ## FIxar top 8 rader och fylle
 		slots.add_child(row)
 
 
-func _on_submit() -> void: 
+func _on_submit() -> void:  # Hanterar tiden när submit klickas
 	if _submitted:
 		return
 	var n: String = name_input.text.strip_edges()

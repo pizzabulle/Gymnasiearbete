@@ -9,7 +9,7 @@ extends Path2D
 
 var direction = 1
 
-func _ready() -> void:
+func _ready() -> void: # Tar in signalen att realm byts och byter realmn för helikoptern
 	SwitchPosition.connect("realm_changed", switch_realm_heli)
 	if SwitchPosition.normal_realm == true:
 		switch_from_realm_heli()
@@ -21,7 +21,7 @@ func _ready() -> void:
 		anim.speed_scale = speed_scale
 		set_process(false)
 
-func _process(delta: float) -> void: # GÖr att helikoptern åker fram och tillbaka
+func _process(delta: float) -> void: # Gör att helikoptern åker fram och tillbaka
 	path.progress += speed * direction
 	if path.progress_ratio >= 1.0:
 		direction = -1

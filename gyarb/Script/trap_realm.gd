@@ -16,7 +16,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	switch_realm_trap()
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void: # När spelaren kolliderar med bananen ska ett ljud spelas och en fallande animation 
 	if body is Player:
 		if not fall_played:
 			fall.play()
@@ -34,7 +34,7 @@ func switch_to_realm_trap ():
 func switch_from_realm_trap ():
 	trap_realm.visible = true
 
-func switch_realm_trap():
+func switch_realm_trap(): # Byter realm för bananen
 	if SwitchPosition.normal_realm == true:
 		switch_to_realm_trap()
 	elif SwitchPosition.normal_realm == false:
