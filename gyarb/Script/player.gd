@@ -61,13 +61,13 @@ func _physics_process(delta: float) -> void:
 		DEAD:
 			_dead_state(delta)
 
-	# update coyote timer AFTER movement
+
 	if is_on_floor():
 		fall_timer = fall_time
 	else:
 		fall_timer -= delta
 
-	# perform jump
+## GÖr att man kan hoppa lite efter man fallit
 	if jump_buffer_timer > 0 and fall_timer > 0:
 		_enter_air_state(true)
 		jump_buffer_timer = 0
@@ -80,6 +80,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _movement(delta: float, input_x: float) -> void:
+	#Glid effekt vid is block
 	_check_ice()
 	var current_acc = ICE_BRAKE if (on_ice and input_x == 0) else ACC
 	if up_direction.is_equal_approx(Vector2.UP) or up_direction.is_equal_approx(Vector2.DOWN):
@@ -116,7 +117,7 @@ func _movement(delta: float, input_x: float) -> void:
 
 
 func _update_direction(input_x: float) -> void:
-
+#spelaren ska titta åt rätt håll
 	if input_x > 0:
 		anim_player.flip_h = false
 		anim_player_realm.flip_h = false
@@ -274,6 +275,7 @@ func switch_velocity():
 		SwitchPosition.saved_velocity = player.velocity - Vector2(0,900)
 
 func _check_ice() -> void:
+	#Kollar när man är på isen och iseffekten ska appliceras
 	on_ice = false
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)

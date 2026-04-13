@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var bg_music: AudioStreamPlayer2D = $BgMusic
-@onready var fall_music: AudioStreamPlayer2D = $FallMusic
 
 var music_on = true
 

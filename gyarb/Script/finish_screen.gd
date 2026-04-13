@@ -25,13 +25,11 @@ func setup(finish_time: float, scores: Array, qualifies: bool) -> void:
 	_time = finish_time
 	_scores = scores
 	_qualifies = qualifies
-	print("setup tid: ", _time)
-	print("your_time_label: ", your_time_label)
 	your_time_label.text = "Din tid: " + _fmt(_time)
 	qualify_row.visible = _qualifies
 	_fill_slots()
-
-func _fill_slots(highlight: String = "") -> void:
+ 
+func _fill_slots(highlight: String = "") -> void: ## FIxar top 8 rader och fyller upp med namnen och tider i topp 8
 	for c in slots.get_children():
 		c.queue_free()
 	for i in range(8):
@@ -60,7 +58,7 @@ func _fill_slots(highlight: String = "") -> void:
 		slots.add_child(row)
 
 
-func _on_submit() -> void:
+func _on_submit() -> void: 
 	if _submitted:
 		return
 	var n: String = name_input.text.strip_edges()
@@ -77,18 +75,18 @@ func _on_submit() -> void:
 		_scores = parent.highscores
 	_fill_slots(n)
 
-func _on_restart_button_pressed() -> void:
+func _on_restart_button_pressed() -> void: ## Gör om allt sparad info om spelet så man börjar om
 	get_tree().paused = false
 	SwitchPosition.saved_time = 0.0
 	SwitchPosition.saved_position = Vector2.ZERO
 	SwitchPosition.level_nr = 1
 	LevelManager.change_to_next_level(1)
 
-func _on_menu_button_pressed() -> void:
+func _on_menu_button_pressed() -> void: # kommer till menu
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
-func _fmt(s: float) -> String:
+func _fmt(s: float) -> String: #Ser till at tiden i sekund blir till mintuer och sekunder
 	var m: int = int(s / 60)
 	var sec: int = int(s) - m * 60
 	return "%02d:%02d" % [m, sec]

@@ -5,7 +5,7 @@ const SAVE_PATH = "res://HighScores/Highscores_savefile.dat"
 @onready var slots: VBoxContainer = $Panel/VBox/Slots
 
 
-func _ready() -> void:
+func _ready() -> void: # öpnar leaderboard stats och  lägger in alla som finns och de nya
 	var highscores = []
 	if FileAccess.file_exists(SAVE_PATH):
 		var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, "G%8vM7Ln")

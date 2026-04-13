@@ -2,7 +2,7 @@ extends Node
 
 signal realm_changed()
 signal restart()
-
+# All sparad info under spelets gång
 var saved_position :=Vector2.ZERO
 var normal_realm: bool = true
 var level_nr : int = 0

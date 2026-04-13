@@ -18,23 +18,23 @@ var game_completed: bool = false
 var highscores: Array = []
 
 func _ready() -> void:
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),false)
-	var path = get_tree().current_scene.scene_file_path
-	var file = path.get_file()
-	var number = file.get_basename()
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),false) # Sätter igång musiken
+	var path = get_tree().current_scene.scene_file_path #
+	var file = path.get_file()		#		ser till vilken bana mean är på
+	var number = file.get_basename()#
 	SwitchPosition.level_nr = int(number.split("_")[1])
 	game_start = true
 	SwitchPosition.start_pos = start_pos.position
 
 	time = SwitchPosition.saved_time
 	if SwitchPosition.saved_position != Vector2.ZERO:
-		player.global_position.x = SwitchPosition.saved_position.x
+		player.global_position.x = SwitchPosition.saved_position.x #### När man byter level ser detta till att man spawnar rätt position
 		if SwitchPosition.saved_position.y < 500:
 			player.global_position.y = 845
 		else:
 			player.global_position.y = 10
 
-	if SwitchPosition.normal_realm == true:
+	if SwitchPosition.normal_realm == true: #### Realm ändringen 
 		switch_from_realm_block()
 	elif SwitchPosition.normal_realm == false:
 		switch_to_realm_block()
@@ -72,7 +72,7 @@ func switch_realm_block():
 func _on_next_level_body_entered(body: Node2D) -> void:
 	if body is Player:
 		SwitchPosition.level_nr += 1
-		SwitchPosition.saved_time = time
+		SwitchPosition.saved_time = time		# byter level
 		LevelManager.change_to_next_level(SwitchPosition.level_nr)
 		SwitchPosition.saved_position = player.global_position
 
@@ -84,18 +84,18 @@ func _on_back_level_body_entered(body: Node2D) -> void:
 		SwitchPosition.saved_position = player.global_position
 
 func _on_last_level_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player:			# Ser till at man inte kan fella ner längst ner
 		player.enter_revive_state()
 
 func _on_finish_body_entered(body: Node2D) -> void:
 	if body is Player and not game_completed:
-		game_completed = true
+		game_completed = true### Målet
 		_load_highscores()
 		_show_finish_screen()
 
 
 ################Time##############
-func _load_highscores() -> void:
+func _load_highscores() -> void: ## KOllar om highscore filen finns
 	highscores = []
 	if FileAccess.file_exists(SAVE_PATH):
 		var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, "G%8vM7Ln")
@@ -107,27 +107,27 @@ func _load_highscores() -> void:
 		if data is Array:
 			highscores = data
 
-func _save_highscores() -> void:
+func _save_highscores() -> void: # Sparar ens tid i highscores listan
 	DirAccess.make_dir_recursive_absolute("res://HighScores")
-	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.WRITE,"G%8vM7Ln")
+	var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.WRITE,"G%8vM7Ln") 
 	if file == null:
 		return
 	file.store_string(JSON.stringify(highscores))
 	file.close()
 
-func _qualifies_for_top8() -> bool:
+func _qualifies_for_top8() -> bool: # KOllar om man är tilräckligt sanbb för att vara i leaderboard
 	if highscores.size() < 8:
 		return true
 	return time < highscores[highscores.size() - 1]["time"]
 
-func _insert_score(player_name: String) -> void:
+func _insert_score(player_name: String) -> void: # Lägger till namn och tid i leaderboard
 	highscores.append({"name": player_name, "time": time})
 	highscores.sort_custom(func(a, b): return a["time"] < b["time"])
 	if highscores.size() > 8:
 		highscores.resize(8)
 	_save_highscores()
 
-func _show_finish_screen() -> void:
+func _show_finish_screen() -> void: # Visar leaderboard
 	var finish_scene = preload("res://Scenes/FinishScreen.tscn").instantiate()
 	finish_scene.connect("score_submitted", _on_score_submitted)
 	add_child(finish_scene)
@@ -136,7 +136,7 @@ func _show_finish_screen() -> void:
 func _on_score_submitted(player_name: String) -> void:
 	_insert_score(player_name)
 
-func _from_seconds_to_time(seconds: float) -> String:
+func _from_seconds_to_time(seconds: float) -> String: #Timer
 	var minu = int(seconds / 60)
 	var sec = int(seconds - minu * 60)
 	return "%02d:%02d" % [minu, sec]

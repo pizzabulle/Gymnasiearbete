@@ -21,14 +21,14 @@ func _ready() -> void:
 		anim.speed_scale = speed_scale
 		set_process(false)
 
-func _process(delta: float) -> void:
+func _process(delta: float) -> void: # GÖr att helikoptern åker fram och tillbaka
 	path.progress += speed * direction
 	if path.progress_ratio >= 1.0:
 		direction = -1
 	elif path.progress_ratio <= 0.0:
 		direction = 1
 
-func switch_to_realm_heli():
+func switch_to_realm_heli(): # realm ändrandet
 	heli_norm.visible = false
 
 func switch_from_realm_heli():
