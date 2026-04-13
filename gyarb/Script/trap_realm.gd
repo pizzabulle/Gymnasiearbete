@@ -1,6 +1,10 @@
 extends Area2D
 
 @onready var trap_realm = $Sprite2D
+@onready var fall = $FallSound
+
+var fall_played = false
+
 
 func _ready() -> void:
 	SwitchPosition.connect("realm_changed", switch_realm_trap)
@@ -14,9 +18,13 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
+		if not fall_played:
+			fall.play()
+			fall_played = true
 		body.enter_dead_state(body.global_position)
 		await get_tree().create_timer(2).timeout
-		body.enter_revive_state()	
+		body.enter_revive_state()
+		fall_played = false
 
 
 func switch_to_realm_trap ():

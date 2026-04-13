@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GYARB"
+config/name="Realm Ascent"
 run/main_scene="uid://dtg0l0ye813af"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Free/Terrain/icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://Free/Terrain/icon.svg"
 
 LevelManager="*res://Scenes/level_manager.tscn"
 SwitchPosition="*res://Script/switch_position.gd"
+Music="*res://Scenes/music.tscn"
 
 [display]
 

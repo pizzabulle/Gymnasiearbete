@@ -1,5 +1,10 @@
 extends Control
 
+func _ready() -> void:
+	if Music.music_on:
+		$PanelContainer/VBoxContainer/Volume.text = "Music: On"
+	else:
+		$PanelContainer/VBoxContainer/Volume.text = "Music: Off"
 
 func _process(delta: float) -> void:
 	testesc()
@@ -7,6 +12,7 @@ func _process(delta: float) -> void:
 func resume():
 	get_tree().paused = false
 	$AnimationPlayer.play_backwards("blur")
+
 
 func pause():
 	
@@ -23,6 +29,16 @@ func testesc ():
 
 func _on_resume_pressed() -> void:
 	resume()
+
+func _on_volume_pressed() -> void:
+	if $PanelContainer/VBoxContainer/Volume.text == "Music: On":
+		$PanelContainer/VBoxContainer/Volume.text = "Music: Off"
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80)
+		Music.music_on = false
+	else:
+		$PanelContainer/VBoxContainer/Volume.text = "Music: On"
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -10)
+		Music.music_on = true
 
 
 func _on_restart_pressed() -> void:

@@ -9,6 +9,7 @@ const SAVE_PATH = "res://HighScores/Highscores_savefile.dat"
 @onready var highscore_label: Label = $HUD/HighscoreLabel
 @onready var change_level: Area2D = $NextLevel
 @onready var start_pos: Marker2D = $Marker2D
+@onready var bg_music: AudioStreamPlayer2D = $BgMusic
 
 var game_start = false
 var can_switch = true
@@ -16,8 +17,8 @@ var time: float = 0.0
 var game_completed: bool = false
 var highscores: Array = []
 
-
 func _ready() -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"),false)
 	var path = get_tree().current_scene.scene_file_path
 	var file = path.get_file()
 	var number = file.get_basename()
@@ -96,17 +97,13 @@ func _on_finish_body_entered(body: Node2D) -> void:
 ################Time##############
 func _load_highscores() -> void:
 	highscores = []
-	print("fil finns: ", FileAccess.file_exists(SAVE_PATH))
-	print("sökväg: ", SAVE_PATH)
 	if FileAccess.file_exists(SAVE_PATH):
 		var file = FileAccess.open_encrypted_with_pass(SAVE_PATH, FileAccess.READ, "G%8vM7Ln")
 		if file == null:
-			print("kunde inte öppna filen")
 			return
 		var text = file.get_as_text()
 		file.close()
 		var data = JSON.parse_string(text)
-		print("data: ", data)
 		if data is Array:
 			highscores = data
 

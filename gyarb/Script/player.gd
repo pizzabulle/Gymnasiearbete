@@ -5,9 +5,13 @@ const MAX_SPEED = 300
 const ACC = 2500
 const JUMP_VELOCITY = 600
 const GRAVITY = 1250
+const ICE_ACC = 2500
+const ICE_BRAKE = 350
 
 enum {IDLE, WALK, AIR, DEAD}
 var state = IDLE
+
+var on_ice: bool = false
 
 
 var jump_buffer_timer := 0.0
@@ -39,7 +43,6 @@ func _ready() -> void:
 ############### GAME LOOP #####################
 
 func _physics_process(delta: float) -> void:
-
 	# save jump input
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
@@ -73,18 +76,22 @@ func _physics_process(delta: float) -> void:
 
 ########### GENERAL HELP FUNCTIONS ############
 
-func _movement(delta: float, input_x: float) -> void:
 
+
+
+func _movement(delta: float, input_x: float) -> void:
+	_check_ice()
+	var current_acc = ICE_BRAKE if (on_ice and input_x == 0) else ACC
 	if up_direction.is_equal_approx(Vector2.UP) or up_direction.is_equal_approx(Vector2.DOWN):
 
 		if input_x != 0:
 			velocity.x = move_toward(
 				velocity.x,
 				input_x * MAX_SPEED * (-sin(up_direction.angle())),
-				ACC * delta
+				current_acc * delta
 			)
 		else:
-			velocity.x = move_toward(velocity.x, 0, ACC * delta)
+			velocity.x = move_toward(velocity.x, 0, current_acc * delta)
 
 		velocity.y += -up_direction.y * GRAVITY * delta
 
@@ -97,10 +104,10 @@ func _movement(delta: float, input_x: float) -> void:
 			velocity.y = move_toward(
 				velocity.y,
 				input_x * MAX_SPEED * (cos(up_direction.angle())),
-				ACC * delta
+				current_acc * delta
 			)
 		else:
-			velocity.y = move_toward(velocity.y, 0, ACC * delta)
+			velocity.y = move_toward(velocity.y, 0, current_acc * delta)
 
 		velocity.x += -up_direction.x * GRAVITY * delta
 
@@ -189,10 +196,9 @@ func _enter_air_state(jumping: bool):
 
 	anim_player.play("Air")
 	anim_player_realm.play("Air")
-
 	if jumping:
-		velocity = up_direction * JUMP_VELOCITY
-
+		velocity -= up_direction * velocity.dot(up_direction)
+		velocity += up_direction * JUMP_VELOCITY
 
 func enter_dead_state(dir: Vector2) -> void:
 
@@ -266,3 +272,15 @@ func switch_velocity():
 
 	elif player.global_position.y < -100 and player.velocity.y >900:
 		SwitchPosition.saved_velocity = player.velocity - Vector2(0,900)
+
+func _check_ice() -> void:
+	on_ice = false
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is TileMapLayer:
+			var pos = collision.get_position() + collision.get_normal() * -4
+			var tile_pos = collider.local_to_map(collider.to_local(pos))
+			var tile_data = collider.get_cell_tile_data(tile_pos)
+			if tile_data and tile_data.get_custom_data("ice"):
+				on_ice = true

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8tg52kf7khvr"]
+
+[ext_resource type="Script" uid="uid://cgy1t6k3mi4ic" path="res://Script/music.gd" id="1_fbmny"]
+[ext_resource type="AudioStream" uid="uid://cr8nq82uoulk8" path="res://Free/music/Desert Theme.ogg" id="2_qxpp0"]
+
+[node name="Music" type="Node2D"]
+script = ExtResource("1_fbmny")
+
+[node name="BgMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qxpp0")
+volume_db = -3.0
+bus = &"Music"
+parameters/looping = true
