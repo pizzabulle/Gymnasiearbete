@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_fj5rg"]
 [ext_resource type="Texture2D" uid="uid://7bt5kj8d0m0r" path="res://Free/Menu/Levels/06.png" id="2_yb6aw"]
-[ext_resource type="PackedScene" uid="uid://bt0vix575fl2l" path="res://Scenes/Heli_Realm.tscn" id="3_67u3v"]
+[ext_resource type="PackedScene" uid="uid://bt0vix575fl2l" path="res://Scenes/heli_realm.tscn" id="3_67u3v"]
 [ext_resource type="PackedScene" uid="uid://o0c61ntjcmee" path="res://Scenes/trap_norm.tscn" id="4_67u3v"]
 [ext_resource type="Texture2D" uid="uid://c36dj8gw3x7h6" path="res://Free/Menu/Buttons/K-Button.png" id="5_helb0"]
 

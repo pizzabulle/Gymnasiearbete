@@ -128,7 +128,7 @@ func _insert_score(player_name: String) -> void: # Lägger till namn och tid i l
 	_save_highscores()
 
 func _show_finish_screen() -> void: # Visar leaderboard
-	var finish_scene = preload("res://Scenes/FinishScreen.tscn").instantiate()
+	var finish_scene = preload("res://Scenes/finish_screen.tscn").instantiate()
 	finish_scene.connect("score_submitted", _on_score_submitted)
 	add_child(finish_scene)
 	finish_scene.setup(time, highscores, _qualifies_for_top8())

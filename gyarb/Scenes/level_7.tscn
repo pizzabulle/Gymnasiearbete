@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cmwpgk36yckt6" path="res://Scenes/level.tscn" id="1_i87cx"]
 [ext_resource type="Texture2D" uid="uid://dabh3mvtpkkvu" path="res://Free/Menu/Levels/07.png" id="2_i3ob1"]
 [ext_resource type="PackedScene" uid="uid://o0c61ntjcmee" path="res://Scenes/trap_norm.tscn" id="3_3fthp"]
-[ext_resource type="PackedScene" uid="uid://d3jq43xifwlr" path="res://Scenes/Heli_Norm.tscn" id="4_hewxp"]
+[ext_resource type="PackedScene" uid="uid://d3jq43xifwlr" path="res://Scenes/heli_norm.tscn" id="4_hewxp"]
 
 [node name="Level" instance=ExtResource("1_i87cx")]
 

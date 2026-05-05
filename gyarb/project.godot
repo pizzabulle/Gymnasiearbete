@@ -13,7 +13,11 @@ config_version=5
 config/name="Realm Ascent"
 run/main_scene="uid://dtg0l0ye813af"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://Free/Terrain/icon.svg"
+config/icon="res://Free/Main Characters/Ninja Frog/ICON.png"
+
+[audio]
+
+buses/default_bus_layout="res://Free/music/music.tres"
 
 [autoload]
 

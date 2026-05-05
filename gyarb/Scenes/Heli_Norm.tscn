@@ -56,6 +56,7 @@ curve = SubResource("Curve2D_877it")
 script = ExtResource("1_g8jso")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(2025.33, 885.333)
 rotation = -1.5708
 rotates = false
 metadata/_edit_lock_ = true
@@ -64,6 +65,7 @@ metadata/_edit_lock_ = true
 remote_path = NodePath("../../AnimatableBody2D")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(2025.33, 885.333)
 rotation = -1.5708
 collision_layer = 4
 
